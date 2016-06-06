@@ -126,11 +126,11 @@ Protected Module pigpio
 	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function bbI2CClose Lib pigpioLibName (SDA As UInteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function bbI2CClose Lib pigpioLibName (SDA As UInteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function bbI2COpen Lib pigpioLibName (SDA As UInteger, SCL As Uinteger, Baud as Uinteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function bbI2COpen Lib pigpioLibName (SDA As UInteger, SCL As Uinteger, Baud as Uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h1, Description = 526561647320746865204750494F206C6576656C2C206F6E206F72206F66662C206F722072616973657320616E206572726F722E
@@ -295,239 +295,281 @@ Protected Module pigpio
 	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function getspiOpen Lib pigpioLibName (spiChannel as uinteger, baud as uinteger, flags as uinteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function getspiOpen Lib pigpioLibName (spiChannel as uinteger, baud as uinteger, flags as uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioDelay Lib pigpioLibName (gpio as uinteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioDelay Lib pigpioLibName (gpio as uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioGetMode Lib pigpioLibName (gpio as uinteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioGetMode Lib pigpioLibName (gpio as uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioGetPWMdutycycle Lib pigpioLibName (gpio as uinteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioGetPWMdutycycle Lib pigpioLibName (gpio as uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioGetPWMfrequency Lib pigpioLibName (gpio as uinteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioGetPWMfrequency Lib pigpioLibName (gpio as uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioGetPWMrange Lib pigpioLibName (gpio as uinteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioGetPWMrange Lib pigpioLibName (gpio as uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioGetPWMrealRange Lib pigpioLibName (gpio as uinteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioGetPWMrealRange Lib pigpioLibName (gpio as uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioGetServoPulsewidth Lib pigpioLibName (gpio as uinteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioGetServoPulsewidth Lib pigpioLibName (gpio as uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioGlitchFilter Lib pigpioLibName (userGpio as uinteger, steady as uinteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioGlitchFilter Lib pigpioLibName (userGpio as uinteger, steady as uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioHardwareRevision Lib pigpioLibName () As UInteger
+		Attributes( hidden ) Protected Soft Declare Function gpioHardwareClock Lib pigpioLibName (gpio as uinteger, clockkfrequency as Uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioInitialise Lib pigpioLibName () As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioHardwarePWM Lib pigpioLibName (GPIO as Uinteger, PWMFrequency As Uinteger, PWMDuty as Uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioNoiseFilter Lib pigpioLibName (userGpio as uinteger, steady as uinteger, active as uinteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioHardwareRevision Lib pigpioLibName () As UInteger
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioNotifyBegin Lib pigpioLibName (notificationhandle as uinteger, bitMask as uint32) As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioInitialise Lib pigpioLibName () As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioNotifyClose Lib pigpioLibName (notificationhandle as uinteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioNoiseFilter Lib pigpioLibName (userGpio as uinteger, steady as uinteger, active as uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioNotifyOpen Lib pigpioLibName () As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioNotifyBegin Lib pigpioLibName (notificationhandle as uinteger, bitMask as uint32) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioNotifyOpenWithSize Lib pigpioLibName (size as integer) As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioNotifyClose Lib pigpioLibName (notificationhandle as uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioNotifyPause Lib pigpioLibName (notificationhandle as uinteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioNotifyOpen Lib pigpioLibName () As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioPWM Lib pigpioLibName (gpio as uinteger, dutycycle as uinteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioNotifyOpenWithSize Lib pigpioLibName (size as integer) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioRead Lib pigpioLibName (gpio as uinteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioNotifyPause Lib pigpioLibName (notificationhandle as uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioRead_Bits_0_31 Lib pigpioLibName () As uint32
+		Attributes( hidden ) Protected Soft Declare Function gpioPWM Lib pigpioLibName (gpio as uinteger, dutycycle as uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioRead_Bits_32_53 Lib pigpioLibName () As uint32
+		Attributes( hidden ) Protected Soft Declare Function gpioRead Lib pigpioLibName (gpio as uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioSerialRead Lib pigpioLibName (usergpio as uinteger, byref buffer as ptr, buffersize as UInteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioRead_Bits_0_31 Lib pigpioLibName () As uint32
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioSerialReadClose Lib pigpioLibName (userGpio as uinteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioRead_Bits_32_53 Lib pigpioLibName () As uint32
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioSerialReadInvert Lib pigpioLibName (userGPIO as Uinteger, Invert as UInteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioSerialRead Lib pigpioLibName (usergpio as uinteger, byref buffer as ptr, buffersize as UInteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioSerialReadOpen Lib pigpioLibName (user_GPIO as Uinteger, baud as uinteger, dataBits as uinteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioSerialReadClose Lib pigpioLibName (userGpio as uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioServo Lib pigpioLibName (gpio as uinteger, pulsewidth as uinteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioSerialReadInvert Lib pigpioLibName (userGPIO as Uinteger, Invert as UInteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioSetAlertFunc Lib pigpioLibName (gpio as uinteger, alertFunction as Ptr) As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioSerialReadOpen Lib pigpioLibName (user_GPIO as Uinteger, baud as uinteger, dataBits as uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioSetAlertFuncEx Lib pigpioLibName (gpio as uinteger, alertFunction as Ptr, userData as ptr) As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioServo Lib pigpioLibName (gpio as uinteger, pulsewidth as uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioSetISRFunc Lib pigpioLibName (gpio as uinteger, edge as pigpio . PigpioEdge, timeout as integer, ISRFunc as ptr) As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioSetAlertFunc Lib pigpioLibName (gpio as uinteger, alertFunction as Ptr) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioSetISRFuncEx Lib pigpioLibName (gpio as uinteger, edge as pigpio . PigpioEdge, timeout as integer, ISRFunc as ptr, userdata as ptr) As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioSetAlertFuncEx Lib pigpioLibName (gpio as uinteger, alertFunction as Ptr, userData as ptr) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioSetMode Lib pigpioLibName (gpio as uinteger, mode as uinteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioSetISRFunc Lib pigpioLibName (gpio as uinteger, edge as pigpio . PigpioEdge, timeout as integer, ISRFunc as ptr) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioSetPullUpDown Lib pigpioLibName (gpio as uinteger, mode as pigpio . PigpioPud) As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioSetISRFuncEx Lib pigpioLibName (gpio as uinteger, edge as pigpio . PigpioEdge, timeout as integer, ISRFunc as ptr, userdata as ptr) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioSetPWMfrequency Lib pigpioLibName (gpio as uinteger, value as uinteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioSetMode Lib pigpioLibName (gpio as uinteger, mode as uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioSetPWMrange Lib pigpioLibName (gpio as uinteger, range as uinteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioSetPullUpDown Lib pigpioLibName (gpio as uinteger, mode as pigpio . PigpioPud) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioSetWatchdog Lib pigpioLibName (UserGPIO as uinteger, timeout as uinteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioSetPWMfrequency Lib pigpioLibName (gpio as uinteger, value as uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Sub gpioTerminate Lib pigpioLibName ()
+		Attributes( hidden ) Protected Soft Declare Function gpioSetPWMrange Lib pigpioLibName (gpio as uinteger, range as uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioTrigger Lib pigpioLibName (userGPIO as uinteger, pulseLength as uinteger, level as uinteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioSetWatchdog Lib pigpioLibName (UserGPIO as uinteger, timeout as uinteger) As Integer
+	#tag EndExternalMethod
+
+	#tag Method, Flags = &h21, Description = 44656C61797320666F72206174206C6561737420746865206E756D626572206F66206D6963726F7365636F6E647320737065636966696564206279206D6963726F732E0A52657475726E73207468652061637475616C206C656E677468206F66207468652064656C617920696E206D6963726F7365636F6E64732E200A44656C617973206F6620313030206D6963726F7365636F6E6473206F72206C6573732075736520627573792077616974732E
+		Private Sub gpioSleep(timetype as uinteger,  Seconds as Uinteger,  micros as Uinteger)
+		  #If TargetARM And TargetLinux Then
+		    dim result as integer= pigpio.gpioSleep(timetype, seconds, micros)
+		    if result < 0 then MakeException(result)
+		  #else
+		    PigpioErrorCheck
+		  #endif
+		End Sub
+	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Soft Declare Function gpioSleep Lib pigpioLibName (timetype as uinteger, Seconds as uinteger, Micros as uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioVersion Lib pigpioLibName () As Uinteger
+		Attributes( hidden ) Protected Soft Declare Sub gpioTerminate Lib pigpioLibName ()
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioWaveAddGeneric Lib pigpioLibName (numberOfPulses as uinteger, Pulse as pigpio . pigpioPulse) As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioTick Lib pigpioLibName () As UInt32
+	#tag EndExternalMethod
+
+	#tag Method, Flags = &h21, Description = 44656C61797320666F72206174206C6561737420746865206E756D626572206F66206D6963726F7365636F6E647320737065636966696564206279206D6963726F732E0A52657475726E73207468652061637475616C206C656E677468206F66207468652064656C617920696E206D6963726F7365636F6E64732E200A44656C617973206F6620313030206D6963726F7365636F6E6473206F72206C6573732075736520627573792077616974732E
+		Private Sub gpioTime(timetype as uinteger, byref Seconds as Uinteger, byref micros as Uinteger)
+		  #If TargetARM And TargetLinux Then
+		    dim result as integer= pigpio.gpioTime(timetype, seconds, micros)
+		    if result < 0 then MakeException(result)
+		  #else
+		    PigpioErrorCheck
+		  #endif
+		End Sub
+	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Soft Declare Function gpioTime Lib pigpioLibName (timeType as Uinteger, Byref Seconds as uinteger, Byref Micros as uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioWaveAddNew Lib pigpioLibName () As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioTrigger Lib pigpioLibName (userGPIO as uinteger, pulseLength as uinteger, level as uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioWaveAddSerial Lib pigpioLibName (User_gpio as uinteger, baud as uinteger, dataBits as uinteger, stopBits as Uinteger, offset as uinteger, numberOfBytes as uinteger, Data as ptr) As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioVersion Lib pigpioLibName () As Uinteger
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioWaveChain Lib pigpioLibName (Waves as ptr, Size as Uinteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioWaveAddGeneric Lib pigpioLibName (numberOfPulses as uinteger, Pulse as pigpio . pigpioPulse) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioWaveClear Lib pigpioLibName () As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioWaveAddNew Lib pigpioLibName () As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioWaveCreate Lib pigpioLibName () As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioWaveAddSerial Lib pigpioLibName (User_gpio as uinteger, baud as uinteger, dataBits as uinteger, stopBits as Uinteger, offset as uinteger, numberOfBytes as uinteger, Data as ptr) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioWaveDelete Lib pigpioLibName (id as uinteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioWaveChain Lib pigpioLibName (Waves as ptr, Size as Uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioWaveGetCbs Lib pigpioLibName () As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioWaveClear Lib pigpioLibName () As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioWaveGetHighCbs Lib pigpioLibName () As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioWaveCreate Lib pigpioLibName () As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioWaveGetHighMicros Lib pigpioLibName () As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioWaveDelete Lib pigpioLibName (id as uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioWaveGetHighPulses Lib pigpioLibName () As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioWaveGetCbs Lib pigpioLibName () As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioWaveGetMaxCbs Lib pigpioLibName () As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioWaveGetHighCbs Lib pigpioLibName () As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioWaveGetMaxMicros Lib pigpioLibName () As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioWaveGetHighMicros Lib pigpioLibName () As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioWaveGetMaxPulses Lib pigpioLibName () As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioWaveGetHighPulses Lib pigpioLibName () As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioWaveGetMicros Lib pigpioLibName () As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioWaveGetMaxCbs Lib pigpioLibName () As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioWaveGetPulses Lib pigpioLibName () As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioWaveGetMaxMicros Lib pigpioLibName () As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioWaveTxAt Lib pigpioLibName () As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioWaveGetMaxPulses Lib pigpioLibName () As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioWaveTxBusy Lib pigpioLibName () As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioWaveGetMicros Lib pigpioLibName () As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioWaveTxSend Lib pigpioLibName (waveId as uinteger, WaveMode as pigpio . PigpioWavemode) As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioWaveGetPulses Lib pigpioLibName () As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioWaveTxStop Lib pigpioLibName () As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioWaveTxAt Lib pigpioLibName () As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function gpioWrite Lib pigpioLibName (gpio as uinteger, value as integer) As integer
+		Attributes( hidden ) Protected Soft Declare Function gpioWaveTxBusy Lib pigpioLibName () As Integer
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Soft Declare Function gpioWaveTxSend Lib pigpioLibName (waveId as uinteger, WaveMode as pigpio . PigpioWavemode) As Integer
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Soft Declare Function gpioWaveTxStop Lib pigpioLibName () As Integer
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Soft Declare Function gpioWrite Lib pigpioLibName (gpio as uinteger, value as integer) As integer
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h1, Description = 5265616473206120626C6F636B206F6620757020746F2033322062797465732066726F6D2074686520737065636966696564207265676973746572206F662074686520646576696365206173736F63696174656420776974682068616E646C652E20
@@ -571,7 +613,7 @@ Protected Module pigpio
 	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function i2cBlockProcessCall Lib pigpioLibName (i2chandle as uinteger, i2cregister as uint8, byref buffer as ptr, count as UInteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function i2cBlockProcessCall Lib pigpioLibName (i2chandle as uinteger, i2cregister as uint8, byref buffer as ptr, count as UInteger) As Integer
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h1, Description = 526561647320612073696E676C6520627974652066726F6D2074686520646576696365206173736F63696174656420776974682068616E646C652E20
@@ -635,7 +677,7 @@ Protected Module pigpio
 	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function i2cClose Lib pigpioLibName (i2chandle as uinteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function i2cClose Lib pigpioLibName (i2chandle as uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h1, Description = 5772697465732061206365727461696E206E756D626572206F6620627974657320286F7220616C6C20696620796F7520646F6EE28099742073706563696679206974292066726F6D2076616C756520746F2074686520726177206465766963652E20
@@ -690,35 +732,35 @@ Protected Module pigpio
 	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function i2cOpen Lib pigpioLibName (i2cBus as Uinteger, i2cAddress as Uinteger, i2cFlags as Uinteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function i2cOpen Lib pigpioLibName (i2cBus as Uinteger, i2cAddress as Uinteger, i2cFlags as Uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function i2cProcessCall Lib pigpioLibName (i2chandle as uinteger, i2cregister as uint8, value as UInt16) As Integer
+		Attributes( hidden ) Protected Soft Declare Function i2cProcessCall Lib pigpioLibName (i2chandle as uinteger, i2cregister as uint8, value as UInt16) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function i2cReadBlockData Lib pigpioLibName (i2chandle as uinteger, i2cregister as uint8, byref value as ptr) As Integer
+		Attributes( hidden ) Protected Soft Declare Function i2cReadBlockData Lib pigpioLibName (i2chandle as uinteger, i2cregister as uint8, byref value as ptr) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function i2cReadByte Lib pigpioLibName (i2chandle as uinteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function i2cReadByte Lib pigpioLibName (i2chandle as uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function i2cReadByteData Lib pigpioLibName (i2chandle as uinteger, i2cregister as uint8) As Integer
+		Attributes( hidden ) Protected Soft Declare Function i2cReadByteData Lib pigpioLibName (i2chandle as uinteger, i2cregister as uint8) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function i2cReadDevice Lib pigpioLibName (i2chandle as uinteger, byref value as ptr, count as uinteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function i2cReadDevice Lib pigpioLibName (i2chandle as uinteger, byref value as ptr, count as uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function i2cReadI2CBlockData Lib pigpioLibName (i2chandle as uinteger, i2cregister as uint8, byref value as ptr, count as uinteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function i2cReadI2CBlockData Lib pigpioLibName (i2chandle as uinteger, i2cregister as uint8, byref value as ptr, count as uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function i2cReadWordData Lib pigpioLibName (i2chandle as uinteger, i2cregister as uint8) As Integer
+		Attributes( hidden ) Protected Soft Declare Function i2cReadWordData Lib pigpioLibName (i2chandle as uinteger, i2cregister as uint8) As Integer
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h1, Description = 546869732066756E6374696F6E2073656C6563747320612070616972206F66204750494F20666F72206269742062616E67696E6720493243206174206120737065636966696564206261756420726174652E200A4269742062616E67696E672049324320616C6C6F777320666F72206365727461696E206F7065726174696F6E7320776869636820617265206E6F7420706F737369626C65207769746820746865207374616E6461726420493243206472697665722E200A6F2062617564207261746573206173206C6F772061732035300A6F207265706561746564207374617274730A6F20636C6F636B2073747265746368696E670A6F20493243206F6E20616E792070616972206F66207370617265204750494F20
@@ -771,7 +813,7 @@ Protected Module pigpio
 	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Sub i2cSwitchCombined Lib pigpioLibName (value as Integer)
+		Attributes( hidden ) Protected Soft Declare Sub i2cSwitchCombined Lib pigpioLibName (value as Integer)
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h1, Description = 526561647320612073696E676C652031362062697420776F72642066726F6D2074686520737065636966696564207265676973746572206F662074686520646576696365206173736F63696174656420776974682068616E646C652E
@@ -799,23 +841,23 @@ Protected Module pigpio
 	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function i2cWriteBlockData Lib pigpioLibName (i2chandle as uinteger, i2cregister as uint8, buffer as ptr, count as UInteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function i2cWriteBlockData Lib pigpioLibName (i2chandle as uinteger, i2cregister as uint8, buffer as ptr, count as UInteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function i2cWriteByte Lib pigpioLibName (i2chandle as uinteger, value as UInt8) As Integer
+		Attributes( hidden ) Protected Soft Declare Function i2cWriteByte Lib pigpioLibName (i2chandle as uinteger, value as UInt8) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function i2cWriteByteData Lib pigpioLibName (i2chandle as uinteger, i2cregister as uint8, value as UInt8) As Integer
+		Attributes( hidden ) Protected Soft Declare Function i2cWriteByteData Lib pigpioLibName (i2chandle as uinteger, i2cregister as uint8, value as UInt8) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function i2cWriteDevice Lib pigpioLibName (i2chandle as uinteger, value as ptr, count as uinteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function i2cWriteDevice Lib pigpioLibName (i2chandle as uinteger, value as ptr, count as uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function i2cWriteI2CBlockData Lib pigpioLibName (i2chandle as uinteger, i2cregister as uint8, buffer as ptr, count as UInteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function i2cWriteI2CBlockData Lib pigpioLibName (i2chandle as uinteger, i2cregister as uint8, buffer as ptr, count as UInteger) As Integer
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h1, Description = 53656E647320612073696E676C65206269742028696E207468652052642F5772206269742920746F2074686520646576696365206173736F63696174656420776974682068616E646C652E20
@@ -831,11 +873,11 @@ Protected Module pigpio
 	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function i2cWriteQuick Lib pigpioLibName (i2chandle as uinteger, bit as uinteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function i2cWriteQuick Lib pigpioLibName (i2chandle as uinteger, bit as uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function i2cWriteWordData Lib pigpioLibName (i2chandle as uinteger, i2cregister as uint8, value as UInt16) As Integer
+		Attributes( hidden ) Protected Soft Declare Function i2cWriteWordData Lib pigpioLibName (i2chandle as uinteger, i2cregister as uint8, value as UInt16) As Integer
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h1, Description = 52657475726E73207468652070696770696F2076657273696F6E206E756D626572206966204F4B2C206F74686572776973652072616973657320616E20657863657074696F6E2E
@@ -1036,6 +1078,22 @@ Protected Module pigpio
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h1, Description = 53657473205365636F6E647320616E64204D6963726F7365636F6E647320746F207468652076616C7565732073696E636520312E312E313937302E
+		Protected Sub SecondsSince1970(byref seconds as uinteger, byref micros as uinteger)
+		  #If TargetARM And TargetLinux Then
+		    gpioTime (1, seconds, micros)
+		  #endif
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1, Description = 53657473205365636F6E647320616E64204D6963726F7365636F6E647320746F207468652076616C7565732073696E6365206C69627261727920696E69742E
+		Protected Sub SecondsSinceInit(byref seconds as uinteger, byref micros as uinteger)
+		  #If TargetARM And TargetLinux Then
+		    gpioTime (0, seconds, micros)
+		  #endif
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h1, Description = 546869732066756E6374696F6E20636C6F736573207468652073657269616C20646576696365206173736F63696174656420776974682068616E646C652E20
 		Protected Sub SerClose(SerHandle as uinteger)
 		  #If TargetARM And TargetLinux Then
@@ -1049,11 +1107,11 @@ Protected Module pigpio
 	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function serClose Lib pigpioLibName (SerHandle as uinteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function serClose Lib pigpioLibName (SerHandle as uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function serDataAvailable Lib pigpioLibName (SerHandle as uinteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function serDataAvailable Lib pigpioLibName (SerHandle as uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h1, Description = 546869732066756E6374696F6E2072657475726E7320746865206E756D626572206F6620627974657320617661696C61626C6520746F20626520726561642066726F6D2074686520646576696365206173736F63696174656420776974682068616E646C652E20
@@ -1188,15 +1246,15 @@ Protected Module pigpio
 	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function serOpen Lib pigpioLibName (serTty as ptr, Baud as uinteger, serFlags as uinteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function serOpen Lib pigpioLibName (serTty as ptr, Baud as uinteger, serFlags as uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function serRead Lib pigpioLibName (serchandle as uinteger, byref value as ptr, count as uinteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function serRead Lib pigpioLibName (serchandle as uinteger, byref value as ptr, count as uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function serReadByte Lib pigpioLibName (serchandle as uinteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function serReadByte Lib pigpioLibName (serchandle as uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h1, Description = 53746172747320736572766F2070756C736573206F6E20746865204750494F2C20706F737369626C652076616C75657320617265203020286F6666292C2035303020286D6F737420616E74692D636C6F636B776973652920746F203235303020286D6F737420636C6F636B77697365292E20
@@ -1224,11 +1282,11 @@ Protected Module pigpio
 	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function serWrite Lib pigpioLibName (serchandle as uinteger, buffer as ptr, count as UInteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function serWrite Lib pigpioLibName (serchandle as uinteger, buffer as ptr, count as UInteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function serWriteByte Lib pigpioLibName (serhandle as uinteger, value as UInt8) As Integer
+		Attributes( hidden ) Protected Soft Declare Function serWriteByte Lib pigpioLibName (serhandle as uinteger, value as UInt8) As Integer
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h1, Description = 53657473206120676C697463682066696C746572206F6E2061204750494F2E200A4C6576656C206368616E676573206F6E20746865204750494F20617265206E6F74207265706F7274656420756E6C65737320746865206C6576656C20686173206265656E20737461626C6520666F72206174206C6561737420737465616479206D6963726F7365636F6E64732E20546865206C6576656C206973207468656E207265706F727465642E204C6576656C206368616E676573206F66206C657373207468616E20737465616479206D6963726F7365636F6E6473206172652069676E6F7265642E20
@@ -1236,6 +1294,28 @@ Protected Module pigpio
 		  #If TargetARM And TargetLinux Then
 		    dim result as integer = pigpio.gpioGlitchFilter(UserGPIO,  SteadyTime)
 		    if result < 0 then MakeException (result)
+		  #else
+		    PigpioErrorCheck
+		  #endif
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1, Description = 537461727473206120686172647761726520636C6F636B206F6E2061204750494F2061742074686520737065636966696564206672657175656E63792E204672657175656E636965732061626F76652033304D487A2061726520756E6C696B656C7920746F20776F726B2E200A5468652073616D6520636C6F636B20697320617661696C61626C65206F6E206D756C7469706C65204750494F2E20546865206C6174657374206672657175656E63792073657474696E672077696C6C206265207573656420627920616C6C204750494F207768696368207368617265206120636C6F636B2E200A0A546865204750494F206D757374206265206F6E65206F662074686520666F6C6C6F77696E672E200A0A34202020636C6F636B20302020416C6C206D6F64656C730A35202020636C6F636B20312020416C6C206D6F64656C7320627574204120616E6420422028726573657276656420666F722073797374656D20757365290A36202020636C6F636B20322020416C6C206D6F64656C7320627574204120616E6420420A32302020636C6F636B20302020416C6C206D6F64656C7320627574204120616E6420420A32312020636C6F636B20312020416C6C206D6F64656C7320627574204120616E64205265762E3220422028726573657276656420666F722073797374656D20757365290A0A33322020636C6F636B20302020436F6D70757465206D6F64756C65206F6E6C790A33342020636C6F636B20302020436F6D70757465206D6F64756C65206F6E6C790A34322020636C6F636B20312020436F6D70757465206D6F64756C65206F6E6C792028726573657276656420666F722073797374656D20757365290A34332020636C6F636B20322020436F6D70757465206D6F64756C65206F6E6C790A34342020636C6F636B20312020436F6D70757465206D6F64756C65206F6E6C792028726573657276656420666F722073797374656D20757365290A0A41636365737320746F20636C6F636B20312069732070726F74656374656420627920612070617373776F726420617320697473207573652077696C6C206C696B656C79206372617368207468652050692E205468652070617373776F726420697320676976656E206279206F7227696E672030783541303030303030207769746820746865204750494F206E756D6265722E
+		Protected Sub SetHardwareClock(GPIO as UInteger, ClockFrequency as Uinteger)
+		  #If TargetARM And TargetLinux Then
+		    dim result as integer = pigpio.gpioHardwareClock(gpio, ClockFrequency)
+		    if result < 0 then MakeException (result) 
+		  #else
+		    PigpioErrorCheck
+		  #endif
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1, Description = 5374617274732068617264776172652050574D206F6E2061204750494F2061742074686520737065636966696564206672657175656E637920616E6420647574796379636C652E204672657175656E636965732061626F76652033304D487A2061726520756E6C696B656C7920746F20776F726B2E200A4E4F54453A20416E792077617665666F726D2073746172746564206279206770696F57617665547853656E642C206F72206770696F57617665436861696E2077696C6C2062652063616E63656C6C65642E0A546869732066756E6374696F6E206973206F6E6C792076616C6964206966207468652070696770696F206D61696E20636C6F636B2069732050434D2E20546865206D61696E20636C6F636B2064656661756C747320746F2050434D20627574206D6179206265206F76657272696464656E20627920612063616C6C20746F206770696F436667436C6F636B2E200A50574D667265713A203020286F666629206F7220312D31323530303030303020283132354D290A50574D647574793A203020286F66662920746F20313030303030302028314D292866756C6C79206F6E29
+		Protected Sub SetHardwarePWM(GPIO as UInteger, PWMFrequency as Uinteger, PWMDuty as Uinteger)
+		  #If TargetARM And TargetLinux Then
+		    dim result as integer = pigpio.gpioHardwarePWM(gpio, PWMFrequency, PWMDuty)
+		    if result < 0 then MakeException (result) 
 		  #else
 		    PigpioErrorCheck
 		  #endif
@@ -1264,6 +1344,28 @@ Protected Module pigpio
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h1, Description = 536C6565707320612073656C65637465642074696D6520706572696F642E200A5573652044656C617920666F722073686F72742064656C6179732028E289A420353020C2B57365637329
+		Protected Sub Sleep(Seconds as Uinteger, micros as Uinteger)
+		  #If TargetARM And TargetLinux Then
+		    dim result as integer= gpioSleep(0, seconds, micros)
+		    if result < 0 then MakeException(result)
+		  #else
+		    PigpioErrorCheck
+		  #endif
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1, Description = 536C6565707320756E74696C207468652073656C6563746564207365636F6E647320616E64206D6963726F7365636F6E6473206D61746368657320746865205365636F6E647346726F6D313937302076616C75652E
+		Protected Sub SleepUntil(Seconds as Uinteger, micros as Uinteger)
+		  #If TargetARM And TargetLinux Then
+		    dim result as integer= gpioSleep(1, seconds, micros)
+		    if result < 0 then MakeException(result)
+		  #else
+		    PigpioErrorCheck
+		  #endif
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h1, Description = 436C6F736573207468652053504920646576696365206964656E746966696564206279207468652068616E646C652E20
 		Protected Sub spiClose(spiHandle as Uinteger)
 		  #If TargetARM And TargetLinux Then
@@ -1277,7 +1379,7 @@ Protected Module pigpio
 	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function spiClose Lib pigpioLibName (spihandle as uinteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function spiClose Lib pigpioLibName (spihandle as uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h1, Description = 52657475726E7320612068616E646C6520666F72207468652053504920646576696365206F6E20746865206368616E6E656C2E20446174612077696C6C206265207472616E736665727265642061742062617564206269747320706572207365636F6E642E2054686520666C616773206D6179206265207573656420746F206D6F64696679207468652064656661756C74206265686176696F7572206F6620342D77697265206F7065726174696F6E2C206D6F646520302C20616374697665206C6F7720636869702073656C6563742E20
@@ -1293,7 +1395,7 @@ Protected Module pigpio
 	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function spiRead Lib pigpioLibName (spihandle as uinteger, byref buffer as ptr, count as UInteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function spiRead Lib pigpioLibName (spihandle as uinteger, byref buffer as ptr, count as UInteger) As Integer
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h1, Description = 526561647320636F756E74206279746573206F6620646174612066726F6D207468652053504920646576696365206173736F6369617465642077697468207468652068616E646C652E20
@@ -1329,7 +1431,7 @@ Protected Module pigpio
 	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function spiWrite Lib pigpioLibName (spihandle as uinteger, buffer as ptr, count as UInteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function spiWrite Lib pigpioLibName (spihandle as uinteger, buffer as ptr, count as UInteger) As Integer
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h1, Description = 57726974657320636F756E74206279746573206F6620646174612066726F6D2062756620746F207468652053504920646576696365206173736F6369617465642077697468207468652068616E646C652E20
@@ -1346,7 +1448,7 @@ Protected Module pigpio
 	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Soft Declare Function spiXfer Lib pigpioLibName (spihandle as uinteger, inbuffer as ptr, byref outbuffer as ptr, count as UInteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function spiXfer Lib pigpioLibName (spihandle as uinteger, inbuffer as ptr, byref outbuffer as ptr, count as UInteger) As Integer
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h1, Description = 52657365747320746865207573656420444D41206368616E6E656C732C2072656C6561736573206D656D6F72792C20616E64207465726D696E6174657320616E792072756E6E696E6720746872656164732E2043616C6C206265666F72652070726F6772616D20657869742E20
@@ -1357,6 +1459,16 @@ Protected Module pigpio
 		    PigpioErrorCheck
 		  #endif
 		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1, Description = 52657475726E73207468652063757272656E742073797374656D207469636B2C20746865206E756D626572206F66206D6963726F7365636F6E64732073696E63652073797374656D20626F6F742E200A4173207469636B20697320616E20756E7369676E656420333220626974207175616E746974792069742077726170732061726F756E6420616674657220325E3332206D6963726F7365636F6E64732C20776869636820697320617070726F78696D6174656C79203120686F7572203132206D696E757465732E20
+		Protected Function Tick() As uint32
+		  #If TargetARM And TargetLinux Then
+		    return  pigpio.gpioTick()
+		  #else
+		    PigpioErrorCheck
+		  #endif
+		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h1, Description = 546869732066756E6374696F6E2073656E6473206120747269676765722070756C736520746F2061204750494F2E20546865204750494F2069732073657420746F206C6576656C20666F722070756C73654C656E206D6963726F7365636F6E64732028312D3130302920616E64207468656E20726573657420746F206E6F74206C6576656C2E2020
