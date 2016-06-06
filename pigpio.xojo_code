@@ -153,6 +153,28 @@ Protected Module pigpio
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h1, Description = 436C65617273204750494F20302D33312069662074686520636F72726573706F6E64696E672062697420696E2062697473206973207365742E20
+		Protected Sub ClearBits_0_31(bitmask as uint32)
+		  #If TargetARM And TargetLinux Then
+		    dim result as integer = pigpio.gpioWrite_Bits_0_31_Clear(bitmask)
+		    if result < 0 then MakeException (result) 
+		  #else
+		    PigpioErrorCheck
+		  #endif
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1, Description = 436C65617273204750494F20302D33312069662074686520636F72726573706F6E64696E672062697420696E2062697473206973207365742E20
+		Protected Sub ClearBits_32_53(bitmask as uint32)
+		  #If TargetARM And TargetLinux Then
+		    dim result as integer = pigpio.gpioWrite_Bits_32_53_Clear(bitmask)
+		    if result < 0 then MakeException (result) 
+		  #else
+		    PigpioErrorCheck
+		  #endif
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h1, Description = 44656C61797320666F72206174206C6561737420746865206E756D626572206F66206D6963726F7365636F6E647320737065636966696564206279206D6963726F732E0A52657475726E73207468652061637475616C206C656E677468206F66207468652064656C617920696E206D6963726F7365636F6E64732E200A44656C617973206F6620313030206D6963726F7365636F6E6473206F72206C6573732075736520627573792077616974732E
 		Protected Function Delay(MySecs as Uint32) As uint32
 		  #If TargetARM And TargetLinux Then
@@ -570,6 +592,22 @@ Protected Module pigpio
 
 	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Soft Declare Function gpioWrite Lib pigpioLibName (gpio as uinteger, value as integer) As integer
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Soft Declare Function gpioWrite_Bits_0_31_Clear Lib pigpioLibName (bitmask as uint32) As Integer
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Soft Declare Function gpioWrite_Bits_0_31_Set Lib pigpioLibName (bitmask as uint32) As Integer
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Soft Declare Function gpioWrite_Bits_32_53_Clear Lib pigpioLibName (bitmask as uint32) As Integer
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Soft Declare Function gpioWrite_Bits_32_53_Set Lib pigpioLibName (bitmask as uint32) As Integer
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h1, Description = 5265616473206120626C6F636B206F6620757020746F2033322062797465732066726F6D2074686520737065636966696564207265676973746572206F662074686520646576696365206173736F63696174656420776974682068616E646C652E20
@@ -1289,6 +1327,28 @@ Protected Module pigpio
 		Attributes( hidden ) Protected Soft Declare Function serWriteByte Lib pigpioLibName (serhandle as uinteger, value as UInt8) As Integer
 	#tag EndExternalMethod
 
+	#tag Method, Flags = &h1, Description = 53657473204750494F20302D33312069662074686520636F72726573706F6E64696E672062697420696E2062697473206973207365742E20
+		Protected Sub SetBits_0_31(bitmask as uint32)
+		  #If TargetARM And TargetLinux Then
+		    dim result as integer = pigpio.gpioWrite_Bits_0_31_Set(bitmask)
+		    if result < 0 then MakeException (result) 
+		  #else
+		    PigpioErrorCheck
+		  #endif
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1, Description = 53657473204750494F20302D33312069662074686520636F72726573706F6E64696E672062697420696E2062697473206973207365742E20
+		Protected Sub SetBits_32_53_Set(bitmask as uint32)
+		  #If TargetARM And TargetLinux Then
+		    dim result as integer = pigpio.gpioWrite_Bits_32_53_Set(bitmask)
+		    if result < 0 then MakeException (result) 
+		  #else
+		    PigpioErrorCheck
+		  #endif
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h1, Description = 53657473206120676C697463682066696C746572206F6E2061204750494F2E200A4C6576656C206368616E676573206F6E20746865204750494F20617265206E6F74207265706F7274656420756E6C65737320746865206C6576656C20686173206265656E20737461626C6520666F72206174206C6561737420737465616479206D6963726F7365636F6E64732E20546865206C6576656C206973207468656E207265706F727465642E204C6576656C206368616E676573206F66206C657373207468616E20737465616479206D6963726F7365636F6E6473206172652069676E6F7265642E20
 		Protected Sub SetGlitchFilter(UserGPIO as UInteger, SteadyTime as Uinteger)
 		  #If TargetARM And TargetLinux Then
@@ -1345,7 +1405,7 @@ Protected Module pigpio
 	#tag EndMethod
 
 	#tag Method, Flags = &h1, Description = 536C6565707320612073656C65637465642074696D6520706572696F642E200A5573652044656C617920666F722073686F72742064656C6179732028E289A420353020C2B57365637329
-		Protected Sub Sleep(Seconds as Uinteger, micros as Uinteger)
+		Protected Sub Sleep(Seconds as Uinteger, micros as Uinteger = 0)
 		  #If TargetARM And TargetLinux Then
 		    dim result as integer= gpioSleep(0, seconds, micros)
 		    if result < 0 then MakeException(result)
