@@ -5,5 +5,5 @@ Sorry there is no documentation yet. Please see the demo console app and the met
 
 ###Currently included
 (Besides a lot of fairly untested pigpio declares):
-* LCD Display class with rough Umlaut transation
+* LCD Display class with rough Umlaut translation
 * Button class with interrupts enabling background responses
