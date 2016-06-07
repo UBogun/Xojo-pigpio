@@ -189,7 +189,7 @@ Protected Module pigpio
 		Protected Function DigitalValue(GPIO As UInteger) As Boolean
 		  #If TargetARM And TargetLinux Then
 		    dim result as integer = pigpio.gpioRead(GPIO)
-		    if result < 0 then MakeException (result) else return result = 1
+		    if result < 0 then MakeException (result) else return  result = 0
 		  #else
 		    PigpioErrorCheck
 		  #endif
@@ -586,12 +586,12 @@ Protected Module pigpio
 		Attributes( hidden ) Protected Soft Declare Function gpioWaveTxSend Lib pigpioLibName (waveId as uinteger, WaveMode as pigpio . PigpioWavemode) As Integer
 	#tag EndExternalMethod
 
-	#tag ExternalMethod, Flags = &h1
-		Attributes( hidden ) Protected Soft Declare Function gpioWaveTxStop Lib pigpioLibName () As Integer
+	#tag ExternalMethod, Flags = &h0
+		Attributes( hidden ) Soft Declare Function gpioWaveTxStop Lib pigpioLibName () As Integer
 	#tag EndExternalMethod
 
-	#tag ExternalMethod, Flags = &h1
-		Attributes( hidden ) Protected Soft Declare Function gpioWrite Lib pigpioLibName (gpio as uinteger, value as integer) As integer
+	#tag ExternalMethod, Flags = &h0
+		Attributes( hidden ) Soft Declare Function gpioWrite Lib pigpioLibName (gpio as uinteger, value as integer) As integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -951,10 +951,12 @@ Protected Module pigpio
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h21
-		Private Sub InterruptFunctionTemplate(GPIO As Integer, Level as Integer, Tick as Uint32)
+	#tag Method, Flags = &h0
+		Sub InterruptFunctionTemplate(GPIO As Integer, Level as Integer, Tick as Uint32)
 		  // These are the parameters an InterruptFunction receives
+		  // Take caution, copies of this Method will be called on a background thread!
 		  
+		  #pragma StackOverflowChecking false
 		  #Pragma unused GPIO
 		  #Pragma unused Level
 		  #Pragma unused Tick
