@@ -423,8 +423,8 @@ Protected Module pigpio
 		Attributes( hidden ) Protected Soft Declare Function gpioPWM Lib pigpioLibName (gpio as uinteger, dutycycle as uinteger) As Integer
 	#tag EndExternalMethod
 
-	#tag ExternalMethod, Flags = &h1
-		Attributes( hidden ) Protected Soft Declare Function gpioRead Lib pigpioLibName (gpio as uinteger) As Integer
+	#tag ExternalMethod, Flags = &h0
+		Attributes( hidden ) Soft Declare Function gpioRead Lib pigpioLibName (gpio as uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -878,7 +878,7 @@ Protected Module pigpio
 	#tag Method, Flags = &h1, Description = 53657473207468652049324320286932632D62636D3237303829206D6F64756C65202275736520636F6D62696E6564207472616E73616374696F6E732220706172616D65746572206F6E206F72206F66662E20
 		Protected Sub i2cSetCombinedMode(Value as Boolean)
 		  #If TargetARM And TargetLinux Then
-		     pigpio.i2cSwitchCombined(if (value, 1, 0))
+		    pigpio.i2cSwitchCombined(if (value, 1, 0))
 		  #else
 		    PigpioErrorCheck
 		    #pragma unused value
@@ -1319,7 +1319,7 @@ Protected Module pigpio
 	#tag EndMethod
 
 	#tag Method, Flags = &h1, Description = 4765747320746865204750494F206D6F64652E20
-		Protected Function Mode(GPIO As UInteger) As pigpio . PigpioMode
+		Protected Function Mode(GPIO As UInteger) As pigpio.PigpioMode
 		  #If TargetARM And TargetLinux Then
 		    dim result as integer = pigpio.gpioGetMode(GPIO)
 		    if result < 0 then MakeException (result) else return pigpio.PigpioMode(result)
@@ -1900,7 +1900,7 @@ Protected Module pigpio
 	#tag Method, Flags = &h1, Description = 52657365747320746865207573656420444D41206368616E6E656C732C2072656C6561736573206D656D6F72792C20616E64207465726D696E6174657320616E792072756E6E696E6720746872656164732E2043616C6C206265666F72652070726F6772616D20657869742E20
 		Protected Sub Terminate()
 		  #If TargetARM And TargetLinux Then
-		     pigpio.gpioTerminate
+		    pigpio.gpioTerminate
 		  #else
 		    PigpioErrorCheck
 		  #endif

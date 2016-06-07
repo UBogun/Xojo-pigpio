@@ -4,7 +4,7 @@ Inherits pigpio.Button
 	#tag Method, Flags = &h0
 		Sub Constructor(GpioPin as Integer)
 		  super.Constructor(GpioPin)
-		  pigpio.InterruptFunction (6, PigpioEdge.Either, 0) = addressof DemoPressReceiver
+		  pigpio.InterruptFunction (GpioPin, PigpioEdge.Either, 0) = addressof DemoPressReceiver
 		  
 		End Sub
 	#tag EndMethod

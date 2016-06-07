@@ -9,6 +9,7 @@ Class=Button;pigpio/Button.xojo_code;&hA0AC7FF;&h532F57FF;false
 Folder=App and demo objects;App and demo objects;&h63087FFF;&h0;false
 Class=DemoButton;App and demo objects/DemoButton.xojo_code;&h385B17FF;&h63087FFF;false
 Class=App;App.xojo_code;&h7BD07FF;&h0;false
+Class=IRMotionDetector;pigpio/IRMotionDetector.xojo_code;&h6A558FFF;&h532F57FF;false
 MajorVersion=0
 MinorVersion=1
 SubVersion=0

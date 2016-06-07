@@ -18,8 +18,9 @@ Inherits ConsoleApplication
 		  
 		  do
 		    print "Select a demo"
-		    print "1  – Button with LED"
+		    print "1 – Button with LED"
 		    print "2 – LCD Display"
+		    print "3 – IR Motion Detector"
 		    print "q to quit"
 		    print"?"
 		    dim result as string = Input
@@ -74,6 +75,21 @@ Inherits ConsoleApplication
 		      pigpio.Sleep 3
 		      Display.Display = false
 		      
+		    case "3"
+		      print "IR Motion Detector"
+		      print "This demo assumes you have a PIR Motion detector attached to GPIOPin 5."
+		      print "It will print into the console whenever it detects a motion"
+		      print "Ok to continue? (Y/N)"
+		      result = Input
+		      if result <> "y" then exit
+		      dim ir as new pigpio.IRMotionDetector(5)
+		    case "testpin"
+		      print "enter pin to check in a thight loop"
+		      result = input
+		      dim pin as integer = integer.Parse(result.ToText)
+		      while true
+		        print pigpio.gpioread(pin).totext
+		      wend
 		    case "q"
 		      exit do
 		    end select
