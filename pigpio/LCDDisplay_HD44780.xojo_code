@@ -36,6 +36,15 @@ Protected Class LCDDisplay_HD44780
 		    Setup
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused RSgpioPin
+		    #pragma unused EnablegpioPin
+		    #pragma unused D4Pin
+		    #pragma unused D5Pin
+		    #pragma unused D6Pin
+		    #pragma unused D7Pin
+		    #pragma unused DisplayRows
+		    #pragma Unused CharactersinRow
+		    
 		  #endif
 		  
 		End Sub

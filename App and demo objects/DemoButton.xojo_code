@@ -12,7 +12,13 @@ Inherits pigpio.Button
 	#tag Method, Flags = &h1
 		Protected Shared Sub DemoPressReceiver(GPIO As Integer, Level as Integer, Tick as Uint32)
 		  #pragma StackOverflowChecking false
-		  if GPIO = 6 then call pigpio.gpiowrite(19, abs(level-1))
+		  #if TargetLinux and TargetARM 
+		    if GPIO = 6 then call pigpio.gpiowrite(19, abs(level-1))
+		  #else
+		    #pragma unused GPIO
+		    #pragma unused Level
+		    #pragma unused tick
+		  #endif
 		End Sub
 	#tag EndMethod
 

@@ -18,6 +18,8 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) else return result
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused NumberOfPulses
+		    #pragma unused pulse
 		  #endif
 		End Function
 	#tag EndMethod
@@ -31,6 +33,13 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) else return result
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused usergpio
+		    #pragma unused baud
+		    #pragma unused databits
+		    #pragma unused StopBits
+		    #pragma unused offset
+		    #pragma unused NumberofBytes
+		    #pragma unused wavedata
 		  #endif
 		End Function
 	#tag EndMethod
@@ -42,6 +51,8 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) 
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused gpio
+		    #pragma unused AlertFunction
 		  #endif
 		End Sub
 	#tag EndMethod
@@ -53,6 +64,9 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) 
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused gpio
+		    #pragma unused userdata
+		    #pragma unused AlertFunction
 		  #endif
 		End Sub
 	#tag EndMethod
@@ -75,6 +89,7 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) else return result
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused user_gpio
 		  #endif
 		  
 		End Function
@@ -87,6 +102,8 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result)
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused user_gpio
+		    #pragma unused range
 		  #endif
 		End Sub
 	#tag EndMethod
@@ -98,6 +115,7 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) else return result
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused user_gpio
 		  #endif
 		  
 		End Function
@@ -110,6 +128,7 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) else return result
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused gpio
 		  #endif
 		End Function
 	#tag EndMethod
@@ -121,6 +140,8 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result)
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused user_gpio
+		    #pragma unused dutyCycle
 		  #endif
 		End Sub
 	#tag EndMethod
@@ -160,6 +181,7 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) 
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused bitmask
 		  #endif
 		End Sub
 	#tag EndMethod
@@ -171,6 +193,7 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) 
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused bitmask
 		  #endif
 		End Sub
 	#tag EndMethod
@@ -181,6 +204,7 @@ Protected Module pigpio
 		    return pigpio.gpioDelay(Mysecs)
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused MySecs
 		  #endif
 		End Function
 	#tag EndMethod
@@ -192,6 +216,7 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) else return  result = 0
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused gpio
 		  #endif
 		End Function
 	#tag EndMethod
@@ -203,6 +228,8 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result)
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused gpio
+		    #pragma unused value
 		  #endif
 		End Sub
 	#tag EndMethod
@@ -471,6 +498,9 @@ Protected Module pigpio
 		    if result < 0 then MakeException(result)
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused timetype
+		    #pragma unused seconds
+		    #pragma unused micros
 		  #endif
 		End Sub
 	#tag EndMethod
@@ -494,6 +524,9 @@ Protected Module pigpio
 		    if result < 0 then MakeException(result)
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused timetype
+		    #pragma unused Seconds
+		    #pragma unused micros
 		  #endif
 		End Sub
 	#tag EndMethod
@@ -619,6 +652,8 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) else return new xojo.Core.MemoryBlock(blockptr)
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused i2cHandle
+		    #pragma unused i2cRegister
 		  #endif
 		  
 		End Function
@@ -633,6 +668,9 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) else return new xojo.Core.MemoryBlock(blockptr)
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused i2cHandle
+		    #pragma unused i2cRegister
+		    #pragma unused numberOfBytes
 		  #endif
 		  
 		End Function
@@ -645,6 +683,10 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result)
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused i2cHandle
+		    #pragma unused value
+		    #pragma unused i2cRegister
+		    #pragma Unused numberOfbytes
 		  #endif
 		  
 		End Sub
@@ -661,6 +703,7 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) else return result
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused i2cHandle
 		  #endif
 		  
 		End Function
@@ -673,6 +716,8 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result)
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused i2cHandle
+		    #pragma unused value
 		  #endif
 		  
 		End Sub
@@ -685,6 +730,8 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) else return result
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused i2cHandle
+		    #pragma unused i2cRegister
 		  #endif
 		  
 		End Function
@@ -697,6 +744,9 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result)
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused i2cHandle
+		    #pragma unused i2cRegister
+		    #pragma unused value
 		  #endif
 		  
 		End Sub
@@ -709,6 +759,7 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result)
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused i2cHandle
 		  #endif
 		  
 		End Sub
@@ -726,6 +777,9 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) 
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused i2cHandle
+		    #pragma unused numberOfBytes
+		    #pragma unused value
 		  #endif
 		  
 		End Sub
@@ -740,6 +794,8 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) else return new xojo.Core.MemoryBlock(blockptr)
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused i2cHandle
+		    #pragma unused numberOfBytes
 		  #endif
 		  
 		End Function
@@ -752,6 +808,7 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) 
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused DataGPIO
 		  #endif
 		  
 		End Sub
@@ -764,6 +821,8 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) else return result
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused i2cBus
+		    #pragma unused i2cAddress
 		  #endif
 		  
 		End Function
@@ -808,6 +867,9 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) 
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused DataGPIO
+		    #pragma unused ClockGPIO
+		    #pragma unused baud
 		  #endif
 		  
 		End Sub
@@ -819,6 +881,7 @@ Protected Module pigpio
 		     pigpio.i2cSwitchCombined(if (value, 1, 0))
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused value
 		  #endif
 		  
 		End Sub
@@ -833,6 +896,10 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) else return new xojo.core.memoryblock (blockptr)
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused i2cHandle
+		    #pragma unused value
+		    #pragma unused i2cRegister
+		    #pragma unused numberOfbytes
 		  #endif
 		  
 		End Function
@@ -845,6 +912,9 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) else return result
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused i2cHandle
+		    #pragma unused i2cRegister
+		    #pragma unused value
 		  #endif
 		  
 		End Function
@@ -861,6 +931,8 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) else return result
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused i2cHandle
+		    #pragma unused i2cRegister
 		  #endif
 		  
 		End Function
@@ -873,6 +945,9 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result)
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused i2cHandle
+		    #pragma unused i2cRegister
+		    #pragma unused value
 		  #endif
 		  
 		End Sub
@@ -905,6 +980,8 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result)
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused i2cHandle
+		    #pragma unused value
 		  #endif
 		  
 		End Sub
@@ -936,6 +1013,10 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) 
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused gpio
+		    #pragma unused edge
+		    #pragma unused timeout
+		    #pragma unused ISRFunction
 		  #endif
 		End Sub
 	#tag EndMethod
@@ -947,6 +1028,11 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) 
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused gpio
+		    #pragma unused edge
+		    #pragma unused timeout
+		    #pragma unused ISRFunction
+		    #pragma unused userdata
 		  #endif
 		End Sub
 	#tag EndMethod
@@ -970,36 +1056,262 @@ Protected Module pigpio
 		  err.ErrorNumber = errorcode
 		  Select case errorcode
 		  case -1
-		    err.Message = "PI_INIT_FAILED"
-		    err.Reason = "gpioInitialise failed"
+		    err.Message = "gpioInitialise failed"
 		  case -2
-		    err.Message = "PI_BAD_USER_GPIO"
-		    err.Reason = "GPIO not 0-31"
+		    err.Message = "GPIO not 0-31"
 		  case -3
-		    err.Message = "PI_BAD_GPIO"
-		    err.Reason = "GPIO not 0-53"
+		    err.Message = "GPIO not 0-53"
 		  case -4
-		    err.Message = "PI_BAD_MODE"
-		    err.Reason = "mode not 0-7"
+		    err.Message =  "mode not 0-7"
 		  case -5
-		    err.Message = "PI_BAD_LEVEL"
-		    err.Reason = "level not 0-1"
+		    err.Message = "level not 0-1"
 		  case -6
-		    err.Message = "PI_BAD_PUD"
-		    err.Reason = "pud not 0-2"
+		    err.Message =  "pud not 0-2"
 		  case -7
-		    err.Message = "PI_BAD_PULSEWIDTH"
-		    err.Reason = "pulsewidth not 0 or 500-2500"
+		    err.Message =  "pulsewidth not 0 or 500-2500"
 		  case -8
-		    err.Message = "PI_BAD_DUTYCYCLE"
-		    err.Reason = "dutycycle outside set range"
-		    
+		    err.Message =  "dutycycle outside set range"
+		  case -9
+		    err.Message =  "timer not 0-9"
+		  case -10
+		    err.message ="ms not 10-60000"
+		  case -11
+		    err.Message =  "timetype not 0-1"
+		  case -12
+		    err.Message =  "seconds < 0"
+		  case -13
+		    err.message = "GPmicros not 0-999999"
+		  case -14
+		    err.Message =  "gpioSetTimerFunc failed"
+		  case -15
+		    err.message = "timeout not 0-60000"
+		  case -16, -18, -21
+		    err.Message = "DEPRECATED"
+		  case -17
+		    err.message = "clock peripheral not 0-1"
+		  case -19
+		    err.Message = "clock micros not 1, 2, 4, 5, 8, or 10"
+		  case -20
+		    err.message = "buf millis not 100-10000"
 		  case -21
-		    err.Message = "PI_BAD_DUTYRANGE"
-		    err.Reason ="dutycycle range not 25-40000"
+		    err.message = "dutycycle range not 25-40000"
+		  case -22
+		    err.Message = "signum not 0-63"
+		  case -23
+		    err.Message = "can't open pathname"
+		  case -24
+		    err.Message = "no handle available"
+		  case -25
+		    err.Message = "unknown handle"
+		  case -26
+		    err.Message = "ifFlags > 3"
+		  case -27
+		    err.Message = "DMA (primary) channel not 0-14"
+		  case -28
+		    err.Message = "socket port not 1024-32000"
+		  case -29
+		    err.Message = "unrecognized fifo command"
+		  case -30
+		    err.Message = "DMA secondary channel not 0-6"
+		  case -31
+		    err.Message = "function called before gpioInitialise"
+		  case -32
+		    err.Message = "function called after gpioInitialise"
+		  case -33
+		    err.Message = "waveform mode not 0-3"
+		  case -34
+		    err.Message = "bad parameter in gpioCfgInternals call"
+		  case -35
+		    err.Message = "baud rate not 50-250K(RX)/50-1M(TX)"
+		  case -36
+		    err.Message = "waveform has too many pulses"
+		  case -37
+		    err.Message = "waveform has too many chars"
+		  case -38
+		    err.Message = "no bit bang serial read in progress on GPIO"
+		  case -39
+		    err.Message = "bad (null) serial structure parameter"
+		  case -40
+		    err.Message = "bad (null) serial buf parameter"
+		  case -41
+		    err.Message = "GPIO operation not permitted"
+		  case -42
+		    err.Message = "one or more GPIO not permitted"
+		  case -43
+		    err.Message = "bad WVSC subcommand"
+		  case -44
+		    err.Message = "bad WVSM subcommand"
+		  case -45
+		    err.Message = "bad WVSP subcommand"
+		  case -46
+		    err.Message = "trigger pulse length not 1-100"
+		  case -47
+		    err.Message = "invalid script"
+		  case -48
+		    err.Message = "unknown script id"
+		  case -49
+		    err.Message = "add serial data offset > 30 minutes"
+		  case -50
+		    err.Message = "GPIO already in use"
+		  case -51
+		    err.Message = "must read at least a byte at a time"
+		  case -52
+		    err.Message = "script parameter id not 0-9"
+		  case -53
+		    err.Message = "script has duplicate tag"
+		  case -54
+		    err.Message = "script has too many tags"
+		  case -55
+		    err.Message = "illegal script command"
+		  case -56
+		    err.Message = "script variable id not 0-149"
+		  case -57
+		    err.Message = "no more room for scripts"
+		  case -58
+		    err.Message = "can't allocate temporary memory"
+		  case -59
+		    err.Message = "socket read failed"
+		  case -60
+		    err.Message = "socket write failed"
+		  case -61
+		    err.Message = "too many script parameters (> 10)"
+		  case -62
+		    err.Message = "script initialising"
+		  case -63
+		    err.Message = "script has unresolved tag"
+		  case -64
+		    err.Message = "bad MICS delay (too large)"
+		  case -65
+		    err.Message = "bad MILS delay (too large)"
+		  case -66
+		    err.Message = "non existent wave id"
+		  case -67
+		    err.Message = "No more CBs for waveform"
+		  case -68
+		    err.Message = "No more OOL for waveform"
+		  case -69
+		    err.Message = "attempt to create an empty waveform"
+		  case -70
+		    err.Message = "no more waveforms"
+		  case -71
+		    err.Message = "can't open I2C device"
+		  case -72
+		    err.Message = "can't open serial device"
+		  case -73
+		    err.Message = "can't open SPI device"
+		  case -74
+		    err.Message = "bad I2C bus"
+		  case -75
+		    err.Message = "bad I2C address"
+		  case -76
+		    err.Message = "bad SPI channel"
+		  case -77
+		    err.Message = "bad i2c/spi/ser open flags"
+		  case -78
+		    err.Message = "bad SPI speed"
+		  case -79
+		    err.Message = "bad serial device name"
+		  case -80
+		    err.Message = "bad serial baud rate"
+		  case -81
+		    err.Message = "bad i2c/spi/ser parameter"
+		  case -82
+		    err.Message = "i2c write failed"
+		  case -83
+		    err.Message = "i2c read failed"
+		  case -84
+		    err.Message = "bad SPI count"
+		  case -85
+		    err.Message = "ser write failed"
+		  case -86
+		    err.Message = "ser read failed"
+		  case -87
+		    err.Message = "ser read no data available"
+		  case -88
+		    err.Message = "unknown command"
+		  case -89
+		    err.Message = "spi xfer/read/write failed"
+		  case -90
+		    err.Message = "bad (NULL) pointer"
+		  case -91
+		    err.Message = "no auxiliary SPI on Pi A or B"
 		  case -92
-		    err.Message = "PI_NOT_PWM_GPIO"
-		    err.Reason = "GPIO is not in use for PWM"
+		    err.Message = "GPIO is not in use for PWM"
+		  case -93
+		    err.Message = "GPIO is not in use for servo pulses"
+		  case -94
+		    err.Message = "GPIO has no hardware clock"
+		  case -95
+		    err.Message = "GPIO has no hardware PWM"
+		  case -96
+		    err.Message = "hardware PWM frequency not 1-125M"
+		  case -97
+		    err.Message = "hardware PWM dutycycle not 0-1M"
+		  case -98
+		    err.Message = "hardware clock frequency not 4689-250M"
+		  case -99
+		    err.Message = "need password to use hardware clock 1"
+		  case -100
+		    err.Message = "illegal, PWM in use for main clock"
+		  case -101
+		    err.Message = "serial data bits not 1-32"
+		  case -102
+		    err.Message = "serial (half) stop bits not 2-8"
+		  case -103
+		    err.Message = "socket/pipe message too big"
+		  case -104
+		    err.Message = "bad memory allocation mode"
+		  case -105
+		    err.Message = "too many I2C transaction segments"
+		  case -106
+		    err.Message = "an I2C transaction segment failed"
+		  case -107
+		    err.Message = "SMBus command not supported by driver"
+		  case -108
+		    err.Message = "no bit bang I2C in progress on GPIO"
+		  case -109
+		    err.Message = "bad I2C write length"
+		  case -110
+		    err.Message = "bad I2C read length"
+		  case -111
+		    err.Message = "bad I2C command"
+		  case -112
+		    err.Message = "bad I2C baud rate, not 50-500k"
+		  case -113
+		    err.Message = "bad chain loop count"
+		  case -114
+		    err.Message = "empty chain loop"
+		  case -115
+		    err.Message = "too many chain counters"
+		  case -116
+		    err.Message = "bad chain command"
+		  case -117
+		    err.Message = "bad chain delay micros"
+		  case -118
+		    err.Message = "chain counters nested too deeply"
+		  case -119
+		    err.Message = "chain is too long"
+		  case -120
+		    err.Message = "deprecated function removed"
+		  case -121
+		    err.Message = "bit bang serial invert not 0 or 1"
+		  case -122
+		    err.Message = "bad ISR edge value, not 0-2"
+		  case -123
+		    err.Message = "bad ISR initialisation"
+		  case -124
+		    err.Message = "loop forever must be last chain command"
+		  case -125
+		    err.Message = "bad filter parameter"
+		    
+		  case -2000
+		    err.Message = "PI_PIGIF_ERR_0"
+		  case -2099
+		    err.Message = "PI_PIGIF_ERR_99"
+		  case -3000
+		    err.Message = "PI_CUSTOM_ERR_0"
+		  case -3999
+		    err.Message = "PI_CUSTOM_ERR_999"
 		  End Select
 		  raise err
 		  
@@ -1013,6 +1325,7 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) else return pigpio.PigpioMode(result)
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused gpio
 		  #endif
 		End Function
 	#tag EndMethod
@@ -1024,6 +1337,8 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) 
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused gpio
+		    #pragma unused mode
 		  #endif
 		End Sub
 	#tag EndMethod
@@ -1035,6 +1350,8 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) 
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused NotifcationHandle
+		    #pragma unused BitMask
 		  #endif
 		End Sub
 	#tag EndMethod
@@ -1046,6 +1363,7 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) 
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused NotifcationHandle
 		  #endif
 		End Sub
 	#tag EndMethod
@@ -1057,6 +1375,7 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) 
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused NotifcationHandle
 		  #endif
 		End Sub
 	#tag EndMethod
@@ -1073,6 +1392,7 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) else return result
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused BufferSize
 		  #endif
 		End Function
 	#tag EndMethod
@@ -1092,6 +1412,8 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) 
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused gpio
+		    #pragma unused pud
 		  #endif
 		End Sub
 	#tag EndMethod
@@ -1103,6 +1425,7 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) else return result
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused user_gpio
 		  #endif
 		End Function
 	#tag EndMethod
@@ -1114,6 +1437,8 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) else return result
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused user_gpio
+		    #pragma unused frequency
 		  #endif
 		End Function
 	#tag EndMethod
@@ -1122,6 +1447,9 @@ Protected Module pigpio
 		Protected Sub SecondsSince1970(byref seconds as uinteger, byref micros as uinteger)
 		  #If TargetARM And TargetLinux Then
 		    gpioTime (1, seconds, micros)
+		  #else
+		    #pragma unused seconds
+		    #pragma unused micros
 		  #endif
 		End Sub
 	#tag EndMethod
@@ -1130,6 +1458,9 @@ Protected Module pigpio
 		Protected Sub SecondsSinceInit(byref seconds as uinteger, byref micros as uinteger)
 		  #If TargetARM And TargetLinux Then
 		    gpioTime (0, seconds, micros)
+		  #else
+		    #pragma unused seconds
+		    #pragma unused micros
 		  #endif
 		End Sub
 	#tag EndMethod
@@ -1141,6 +1472,7 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) 
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused SerHandle
 		  #endif
 		  
 		End Sub
@@ -1161,6 +1493,7 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) else Return result
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused serHandle
 		  #endif
 		  
 		End Function
@@ -1173,8 +1506,8 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) else Return result
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused serHandle
 		  #endif
-		  
 		End Function
 	#tag EndMethod
 
@@ -1185,6 +1518,8 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result)
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused serHandle
+		    #pragma unused value
 		  #endif
 		  
 		End Sub
@@ -1198,6 +1533,9 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result)
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused serHandle
+		    #pragma unused numberOfbytes
+		    #pragma unused value
 		  #endif
 		  
 		End Sub
@@ -1212,6 +1550,8 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) else return new xojo.Core.MemoryBlock(blockptr)
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused serHandle
+		    #pragma unused numberOfbytes
 		  #endif
 		  
 		End Function
@@ -1226,6 +1566,9 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) else return result
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused Devicename
+		    #pragma unused baud
+		    #pragma unused SerFlags
 		  #endif
 		  
 		End Function
@@ -1244,6 +1587,8 @@ Protected Module pigpio
 		    end if
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused userGPIO
+		    #pragma unused numberOfBytes
 		  #endif
 		  
 		End Function
@@ -1256,6 +1601,7 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) 
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused userGPIO
 		  #endif
 		  
 		End Sub
@@ -1268,6 +1614,9 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) 
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused usergpio
+		    #pragma unused baud
+		    #pragma unused DataBits
 		  #endif
 		  
 		End Sub
@@ -1280,8 +1629,9 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) 
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused userGPIO
+		    #pragma unused invert
 		  #endif
-		  
 		End Sub
 	#tag EndMethod
 
@@ -1304,6 +1654,7 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result)
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused user_gpio
 		  #endif
 		  
 		End Sub
@@ -1316,6 +1667,8 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result)
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused user_gpio
+		    #pragma unused pulsewidth
 		  #endif
 		  
 		End Sub
@@ -1336,6 +1689,7 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) 
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused bitmask
 		  #endif
 		End Sub
 	#tag EndMethod
@@ -1347,6 +1701,7 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) 
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused bitmask
 		  #endif
 		End Sub
 	#tag EndMethod
@@ -1358,6 +1713,8 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result)
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused userGPIO
+		    #pragma unused SteadyTime
 		  #endif
 		End Sub
 	#tag EndMethod
@@ -1369,6 +1726,8 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) 
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused GPIO
+		    #pragma unused ClockFrequency
 		  #endif
 		End Sub
 	#tag EndMethod
@@ -1380,6 +1739,9 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) 
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused GPIO
+		    #pragma unused PWMDuty
+		    #pragma unused PWMFrequency
 		  #endif
 		End Sub
 	#tag EndMethod
@@ -1391,6 +1753,9 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result)
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused userGPIO
+		    #pragma unused SteadyTime
+		    #pragma unused ActiveTime
 		  #endif
 		End Sub
 	#tag EndMethod
@@ -1402,6 +1767,8 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result)
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused userGPIO
+		    #pragma unused Timeout
 		  #endif
 		End Sub
 	#tag EndMethod
@@ -1413,6 +1780,8 @@ Protected Module pigpio
 		    if result < 0 then MakeException(result)
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused Seconds
+		    #pragma unused micros
 		  #endif
 		End Sub
 	#tag EndMethod
@@ -1424,6 +1793,8 @@ Protected Module pigpio
 		    if result < 0 then MakeException(result)
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused Seconds
+		    #pragma unused micros
 		  #endif
 		End Sub
 	#tag EndMethod
@@ -1435,6 +1806,7 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result)
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused spiHandle
 		  #endif
 		  
 		End Sub
@@ -1451,6 +1823,9 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) else return result
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused SpiChannel
+		    #pragma unused baud
+		    #pragma unused spiFlags
 		  #endif
 		  
 		End Function
@@ -1469,6 +1844,8 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) else return new xojo.Core.MemoryBlock(blockptr)
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused spiHandle
+		    #pragma unused numberOfBytes
 		  #endif
 		  
 		End Function
@@ -1487,6 +1864,10 @@ Protected Module pigpio
 		    end if
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused spiHandle
+		    #pragma unused inbuffer
+		    #pragma unused outbuffer
+		    #pragma unused numberofbytes
 		  #endif
 		  
 		End Function
@@ -1504,6 +1885,9 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) else return result
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused spiHandle
+		    #pragma unused numberOfBytes
+		    #pragma unused value
 		  #endif
 		  
 		End Function
@@ -1540,6 +1924,9 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result)
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused UserGPIO
+		    #pragma unused PulseLength
+		    #pragma unused level
 		  #endif
 		End Sub
 	#tag EndMethod
@@ -1574,6 +1961,7 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result)
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused Waveform
 		  #endif
 		  
 		End Sub
@@ -1620,6 +2008,8 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) 
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused Waveforms
+		    #pragma unused NumberOfItems
 		  #endif
 		End Sub
 	#tag EndMethod
@@ -1631,6 +2021,8 @@ Protected Module pigpio
 		    if result < 0 then MakeException (result) else return result
 		  #else
 		    PigpioErrorCheck
+		    #pragma unused WaveId
+		    #pragma unused WaveMode
 		  #endif
 		End Function
 	#tag EndMethod

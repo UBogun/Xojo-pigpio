@@ -33,7 +33,7 @@ Inherits ConsoleApplication
 		      result = Input
 		      if result <> "y" then exit
 		      dim b as new DemoButton(6)
-		      print "The interrupt will stay active until you quit the program"
+		      
 		      #pragma unused b
 		    case "2"
 		      print "LCD Display"
@@ -81,6 +81,7 @@ Inherits ConsoleApplication
 		  
 		  
 		  pigpio.Terminate 
+		  #pragma unused args
 		End Function
 	#tag EndEvent
 
