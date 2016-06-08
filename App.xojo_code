@@ -21,6 +21,7 @@ Inherits ConsoleApplication
 		    print "1 – Button with LED"
 		    print "2 – LCD Display"
 		    print "3 – IR Motion Detector"
+		    print "4 – Ultrasonic Sensor – one measurement"
 		    print "q to quit"
 		    print"?"
 		    dim result as string = Input
@@ -56,7 +57,7 @@ Inherits ConsoleApplication
 		      Const kD6Pin = 21
 		      Const kD7Pin = 22
 		      
-		      Display = New pigpio.LCDDisplay_HD44780(kRSPin, kEPin, kD4Pin, kD5Pin, _
+		      dim Display as New pigpio.LCDDisplay_HD44780(kRSPin, kEPin, kD4Pin, kD5Pin, _
 		      kD6Pin, kD7Pin, 2)
 		      Display.Clear
 		      Display.SetMessage("Displaytest!")
@@ -83,8 +84,20 @@ Inherits ConsoleApplication
 		      result = Input
 		      if result <> "y" then exit
 		      dim ir as new pigpio.IRMotionDetector(5)
+		      #pragma unused ir
+		      
+		    case "4"
+		      print "Ultrasonic Sensor"
+		      print "This demo triggers an ultrasonic sensor at TriggerPin 16 and EchoPin 26 and prints the result (distance in cm)"
+		      print "for setup, please refer to Einugur’s Tech blog."
+		      print "Ok to continue?"
+		      result = Input
+		      if result <> "y" then exit
+		      if ultrasonic = nil then UltraSonic = new pigpio.UltrasonicSensor(16, 26)
+		      print "Distance: "+UltraSonic.MeasureDistance.ToText+" cm"
+		      
 		    case "testpin"
-		      print "enter pin to check in a thight loop"
+		      print "enter pin to check in a tight loop"
 		      result = input
 		      dim pin as integer = integer.Parse(result.ToText)
 		      while true
@@ -114,7 +127,7 @@ Inherits ConsoleApplication
 
 
 	#tag Property, Flags = &h0
-		Display As pigpio.LCDDisplay_HD44780
+		UltraSonic As pigpio.UltrasonicSensor
 	#tag EndProperty
 
 

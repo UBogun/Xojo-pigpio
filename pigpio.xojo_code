@@ -213,7 +213,7 @@ Protected Module pigpio
 		Protected Function DigitalValue(GPIO As UInteger) As Boolean
 		  #If TargetARM And TargetLinux Then
 		    dim result as integer = pigpio.gpioRead(GPIO)
-		    if result < 0 then MakeException (result) else return  result = 0
+		    if result < 0 then MakeException (result) else return  (result = 1)
 		  #else
 		    PigpioErrorCheck
 		    #pragma unused gpio
@@ -224,7 +224,7 @@ Protected Module pigpio
 	#tag Method, Flags = &h1, Description = 5365747320746865204750494F206C6576656C2C206F6E206F72206F66662E20
 		Protected Sub DigitalValue(GPIO As UInteger, assigns value as Boolean)
 		  #If TargetARM And TargetLinux Then
-		    dim result as integer = pigpio.gpioWrite(GPIO, if (value, pigpio.On, pigpio.Off))
+		    dim result as integer = pigpio.gpioWrite(GPIO, if (value ,1,0))
 		    if result < 0 then MakeException (result)
 		  #else
 		    PigpioErrorCheck

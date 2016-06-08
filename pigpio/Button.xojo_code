@@ -10,7 +10,7 @@ Protected Class Button
 		Sub Constructor(GpioPin as Integer)
 		  mGpioPin = GpioPin
 		  pigpio.Mode(GpioPin) = PigpioMode.Input
-		  pigpio.PullUpValue(GpioPin) = PigpioPud.up
+		  pigpio.PullUpValue(GpioPin) = PigpioPud.Up
 		  pigpio.InterruptFunction (GpioPin, PigpioEdge.Either, 0) = addressof PressReceiver
 		  
 		End Sub
@@ -42,10 +42,6 @@ Protected Class Button
 	#tag EndNote
 
 
-	#tag Property, Flags = &h0
-		Attributes( hidden ) DepressTick As uint32
-	#tag EndProperty
-
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
@@ -57,10 +53,6 @@ Protected Class Button
 
 	#tag Property, Flags = &h21
 		Private mGpioPin As Integer
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
-		Attributes( hidden ) pressTick As uint32
 	#tag EndProperty
 
 

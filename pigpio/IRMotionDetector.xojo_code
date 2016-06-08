@@ -10,7 +10,7 @@ Protected Class IRMotionDetector
 		Sub Constructor(GpioPin as Integer)
 		  mGpioPin = GpioPin
 		  pigpio.Mode(GpioPin) = PigpioMode.Input
-		  pigpio.PullUpValue(GpioPin) = PigpioPud.Down
+		  pigpio.PullUpValue(GpioPin) = PigpioPud.Up
 		  pigpio.InterruptFunction (GpioPin, PigpioEdge.Either, 0) = addressof MotionReceiver
 		  
 		End Sub
@@ -37,6 +37,30 @@ Protected Class IRMotionDetector
 		  
 		End Sub
 	#tag EndMethod
+
+
+	#tag Note, Name = Read Me
+		
+		This is a module for infrared motion detectors like the HC-SR501. 
+		It will probably work with other sensors that use one GPIO too, like the ST-00082 Mini
+		
+		This code is mainly from Björn Eiríksson’s Einhugur Tech blog:
+		https://einhugur.com/blog/index.php/xojo-gpio/hc-sr501-sensor/
+		and was only tweaked to use the MotionReceiver shared method instead of a timer poll
+		(which is also not a bad idea).
+		
+		Best method to use this class is to subclass it and override constructor and the MotionReceiver method just like the DemoButton class does.
+		
+		This sensor may take a bit of time to initialize. See its documentation:
+		https://www.mpja.com/download/31227sc.pdf
+		
+		Please note that the HC-SR501 has two potentiometers. 
+		The first sets the distance ( ~3 - 7 m) and the second the delay after which the sensor resets to normal state (5–300 seconds)
+		The jumper determines if the active time can be prolonged by continued movements or if the sensor will fall back in any case (default)
+		
+		After each change of states it will remain in that state for a period of 2,5 seconds regardless of any motion in its vicinity.
+		
+	#tag EndNote
 
 
 	#tag ComputedProperty, Flags = &h0

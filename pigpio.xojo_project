@@ -10,6 +10,7 @@ Folder=App and demo objects;App and demo objects;&h63087FFF;&h0;false
 Class=DemoButton;App and demo objects/DemoButton.xojo_code;&h385B17FF;&h63087FFF;false
 Class=App;App.xojo_code;&h7BD07FF;&h0;false
 Class=IRMotionDetector;pigpio/IRMotionDetector.xojo_code;&h6A558FFF;&h532F57FF;false
+Class=UltrasonicSensor;pigpio/UltrasonicSensor.xojo_code;&h5FF37FFF;&h532F57FF;false
 MajorVersion=0
 MinorVersion=1
 SubVersion=0
