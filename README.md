@@ -17,7 +17,7 @@ I tried to create virtual properties and convenience methods around the library.
 If you want to use it in a form closest to the original, you find the declare as external methods in the module. Just change their scope and maybe unhide them.
 Look into the classes in the module that demonstrate how to use the library.
 A gpioWrite for example is pigpio.DigitalValue(GPIOPin) = True or False, while you can get the value via pigpio.DigitalValue(gpioPin).  
-All public methods and properties are documented. Look into the descrition tags or consult the pigpio documentation at http://abyz.co.uk/rpi/pigpio/cif.html.
+All public methods and properties are documented. Look into the description tags or consult the pigpio documentation at http://abyz.co.uk/rpi/pigpio/cif.html.
 
 ### No events!
 > Yes, it would be the highest Xojo level of comfort to have events firing when the level of a sensor changes. This is, if possible, complicated at least, because the events are returned on a background thread and it would be very difficult to get onto the virtual sensor instance.  
