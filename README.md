@@ -9,6 +9,7 @@ Sorry there is no documentation yet. Please see the demo console app and the met
 * Button class with interrupts enabling background responses
 * Interrupt-driven IRMotionDetector class
 * Ultrasonic sensor class
+* Demo console app to make use of a few of these features. It informs you about wiring when you select a demo.
 
 ### No events!
 > Yes, it would be the highest Xojo level of comfort to have events firing when the level of a sensor changes. This is, if possible, complicated at least, because the events are returned on a background thread and it would be very difficult to get onto the virtual sensor instance.  
