@@ -26,4 +26,4 @@ If you need to use Xojo methods that lock to an object, it is safe to store the 
 
 ###Credits
 To Paul Lefebvre for Xojo-gpio and Björn Eiríksson for his brilliant Einhugur Tech blog.
-And of course to whoever stands behind the pgio team. Great work!
+And of course to whoever stands behind the pigio library. Great work!
