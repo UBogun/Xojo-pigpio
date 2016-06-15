@@ -198,6 +198,121 @@ Protected Module pigpio
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h1, Description = 436F6E666967757265732070696770696F20746F20627566666572206366674D696C6C6973206D696C6C697365636F6E6473206F66204750494F2073616D706C65732E202056616C7565206D757374206265206265747765656E2031303020616E642031303030302E2044656661756C74203132302E0A546869732066756E6374696F6E206973206F6E6C79206566666563746976652069662063616C6C6564206265666F7265206770696F496E697469616C6973652E20
+		Protected Sub ConfigureBufferSize(forMilliseconds as Uinteger)
+		  #If TargetARM And TargetLinux Then
+		    dim result as integer = pigpio.gpioCfgBufferSize(forMilliseconds)
+		    if result < 0 then MakeException(result)
+		  #else
+		    PigpioErrorCheck
+		    #pragma Unused forMilliseconds
+		  #endif
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1, Description = 436F6E666967757265732070696770696F20746F20757365206120706172746963756C61722073616D706C6520726174652074696D6564206279206120737065636966696564207065726970686572616C2E202044656661756C74206973203520C2B5732E0A546869732066756E6374696F6E206973206F6E6C79206566666563746976652069662063616C6C6564206265666F7265206770696F496E697469616C6973652E20
+		Protected Sub ConfigureClock(Microseconds as cfgMicros, Peripheral as cfgPeripheral)
+		  #If TargetARM And TargetLinux Then
+		    dim result as integer = pigpio.gpioCfgClock(Microseconds, Peripheral, 0)
+		    if result < 0 then MakeException(result)
+		  #else
+		    PigpioErrorCheck
+		    #pragma Unused Microseconds
+		    #pragma unused Peripheral
+		  #endif
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1, Description = 436F6E666967757265732070696770696F20746F20757365207468652073706563696669656420444D41206368616E6E656C2E2028302D3134290A546869732066756E6374696F6E206973206F6E6C79206566666563746976652069662063616C6C6564206265666F7265206770696F496E697469616C6973652E20
+		Protected Sub ConfigureDMAChannel(DMAChannel as Uinteger)
+		  #If TargetARM And TargetLinux Then
+		    dim result as integer = pigpio.gpioCfgDMAchannel(DMAChannel)
+		    if result < 0 then MakeException(result)
+		  #else
+		    PigpioErrorCheck
+		    #pragma Unused DMAChannel
+		  #endif
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1, Description = 436F6E666967757265732070696770696F20746F20757365207468652073706563696669656420444D41206368616E6E656C732E2028302D3134292E2044656661756C747320617265203134206173207072696D61727920616E642036206173207365636F6E64617279206368616E6E656C2E0A546869732066756E6374696F6E206973206F6E6C79206566666563746976652069662063616C6C6564206265666F7265206770696F496E697469616C6973652E20
+		Protected Sub ConfigureDMAChannels(PrimaryChannel as Uinteger, SecondaryChannel as Uinteger)
+		  #If TargetARM And TargetLinux Then
+		    dim result as integer = pigpio.gpioCfgDMAchannels(PrimaryChannel,SecondaryChannel)
+		    if result < 0 then MakeException(result)
+		  #else
+		    PigpioErrorCheck
+		    #pragma Unused PrimaryChannel
+		    #pragma Unused SecondaryChannel
+		  #endif
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1, Description = 436F6E666967757265732070696770696F20746F20757365207468652073706563696669656420444D41206368616E6E656C2E2028302D3134290A546869732066756E6374696F6E206973206F6E6C79206566666563746976652069662063616C6C6564206265666F7265206770696F496E697469616C6973652E20
+		Protected Sub ConfigureDMAMemoryAllocation(Mode as memAllocMode)
+		  #If TargetARM And TargetLinux Then
+		    dim result as integer = pigpio.gpioCfgMemAlloc(Mode)
+		    if result < 0 then MakeException(result)
+		  #else
+		    PigpioErrorCheck
+		    #pragma Unused Mode
+		  #endif
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1, Description = 436F6E666967757265732070696770696F20737570706F7274206F6620746865206669666F20616E6420736F636B657420696E74657266616365732E2044656661756C743A20616C6C20656E61626C65642E0A546869732066756E6374696F6E206973206F6E6C79206566666563746976652069662063616C6C6564206265666F7265206770696F496E697469616C6973652E20
+		Protected Sub ConfigureInterfaces(DisableFIFO_Pipe As Boolean = False, DisableSocketInterface As Boolean = False, DisableRemoteAccess As boolean = False)
+		  #If TargetARM And TargetLinux Then
+		    dim flags as uinteger = if (DisableFIFO_Pipe, PI_DISABLE_FIFO_IF, 0) + if (DisableSocketInterface, PI_DISABLE_SOCK_IF, 0) + _
+		    if (DisableRemoteAccess, PI_LOCALHOST_SOCK_IF, 0)
+		    dim result as integer = pigpio.gpioCfgInterfaces(Flags)
+		    if result < 0 then MakeException(result)
+		  #else
+		    PigpioErrorCheck
+		    #pragma Unused DisableFIFO_Pipe
+		    #pragma unused DisableSocketInterface
+		    #pragma unused DisableRemoteAccess
+		  #endif
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1, Description = 436F6E666967757265732070696770696F20746F206F6E6C7920616C6C6F7720757064617465732028777269746573206F72206D6F6465206368616E6765732920666F7220746865204750494F2073706563696669656420627920746865206D61736B2E200A546869732066756E6374696F6E206973206F6E6C79206566666563746976652069662063616C6C6564206265666F7265206770696F496E697469616C6973652E200A536565207468652050495F44656661756C745F436F6E7374616E7473206F662074686973206D6F64756C6520666F722064656661756C7473206F6620646966666572656E7420626F6172642074797065732E
+		Protected Sub Configureinternals(What As cfgWhat, Value As Uinteger)
+		  #If TargetARM And TargetLinux Then
+		    dim result as integer = pigpio.gpioCfgInternals(what, value)
+		    if result < 0 then MakeException(result)
+		  #else
+		    PigpioErrorCheck
+		    #pragma Unused what
+		    #pragma unused value
+		  #endif
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1, Description = 436F6E666967757265732070696770696F20746F206F6E6C7920616C6C6F7720757064617465732028777269746573206F72206D6F6465206368616E6765732920666F7220746865204750494F2073706563696669656420627920746865206D61736B2E200A546869732066756E6374696F6E206973206F6E6C79206566666563746976652069662063616C6C6564206265666F7265206770696F496E697469616C6973652E200A536565207468652050495F44656661756C745F436F6E7374616E7473206F662074686973206D6F64756C6520666F722064656661756C7473206F6620646966666572656E7420626F6172642074797065732E
+		Protected Sub ConfigurePermission(UpdateMask As uint64)
+		  #If TargetARM And TargetLinux Then
+		    dim result as integer = pigpio.gpioCfgPermissions(UpdateMask)
+		    if result < 0 then MakeException(result)
+		  #else
+		    PigpioErrorCheck
+		    #pragma Unused UpdateMask
+		  #endif
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1, Description = 436F6E666967757265732070696770696F20746F20757365207468652073706563696669656420736F636B657420706F72742E202028313032342D3332303030292E2044656661756C7420383838382E0A546869732066756E6374696F6E206973206F6E6C79206566666563746976652069662063616C6C6564206265666F7265206770696F496E697469616C6973652E20
+		Protected Sub ConfigureSocketPort(Port as Uinteger)
+		  #If TargetARM And TargetLinux Then
+		    dim result as integer = pigpio.gpioCfgSocketPort(Port)
+		    if result < 0 then MakeException(result)
+		  #else
+		    PigpioErrorCheck
+		    #pragma Unused Port
+		  #endif
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h1, Description = 44656C61797320666F72206174206C6561737420746865206E756D626572206F66206D6963726F7365636F6E647320737065636966696564206279206D6963726F732E0A52657475726E73207468652061637475616C206C656E677468206F66207468652064656C617920696E206D6963726F7365636F6E64732E200A44656C617973206F6620313030206D6963726F7365636F6E6473206F72206C6573732075736520627573792077616974732E
 		Protected Function Delay(MySecs as Uint32) As uint32
 		  #If TargetARM And TargetLinux Then
@@ -344,7 +459,47 @@ Protected Module pigpio
 	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Attributes( hidden ) Protected Soft Declare Function getspiOpen Lib pigpioLibName (spiChannel as uinteger, baud as uinteger, flags as uinteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function gpioCfgBufferSize Lib pigpioLibName (millis as uinteger) As Integer
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Soft Declare Function gpioCfgClock Lib pigpioLibName (Microseconds as cfgMicros, Peripheral as cfgPeripheral, source as uinteger) As Integer
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Soft Declare Function gpioCfgDMAchannel Lib pigpioLibName (channel as uinteger) As Integer
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Soft Declare Function gpioCfgDMAchannels Lib pigpioLibName (primary as uinteger, secondary as uinteger) As Integer
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Soft Declare Function gpioCfgGetInternals Lib pigpioLibName () As UInt32
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Soft Declare Function gpioCfgInterfaces Lib pigpioLibName (Flags as uinteger) As Integer
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Soft Declare Function gpioCfgInternals Lib pigpioLibName (what as cfgwhat, value as uinteger) As Integer
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Soft Declare Function gpioCfgMemAlloc Lib pigpioLibName (Mode as memAllocMode) As Integer
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Soft Declare Function gpioCfgPermissions Lib pigpioLibName (Mask as uint64) As Integer
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Soft Declare Function gpioCfgSetInternals Lib pigpioLibName (value as uint32) As integer
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Soft Declare Function gpioCfgSocketPort Lib pigpioLibName (Port as uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -1430,7 +1585,7 @@ Protected Module pigpio
 	#tag EndMethod
 
 	#tag Method, Flags = &h1, Description = 53657473206F7220636C65617273207265736973746F722070756C6C20757073206F7220646F776E73206F6E20746865204750494F2E
-		Protected Sub PullUpValue(GPIO As UInteger, assigns pud as pigpio.PigpioPud)
+		Protected Sub PullUpDownValue(GPIO As UInteger, assigns pud as pigpio.PigpioPud)
 		  #If TargetARM And TargetLinux Then
 		    dim result as integer =  pigpio.gpioSetPullUpDown(GPIO, pud)
 		    if result < 0 then MakeException (result) 
@@ -1466,6 +1621,42 @@ Protected Module pigpio
 		  #endif
 		End Function
 	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Soft Declare Sub rawDumpWave Lib pigpioLibName ()
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Soft Declare Function rawWaveAddGeneric Lib pigpioLibName (Count as Uinteger, pulses as ptr) As Integer
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Soft Declare Function rawWaveCB Lib pigpioLibName () As uInteger
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Soft Declare Function rawWaveCBAdr Lib pigpioLibName (CBNumber as Integer) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Soft Declare Function rawWaveGetIn Lib pigpioLibName (Position as Integer) As uint32
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Soft Declare Function rawWaveGetOut Lib pigpioLibName (Position as Integer) As uint32
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Soft Declare Function rawWaveInfo Lib pigpioLibName (Wave As integer) As rawWaveInfo
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Soft Declare Sub rawWaveSetIn Lib pigpioLibName (Position as Integer, value as UInt32)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Soft Declare Sub rawWaveSetOut Lib pigpioLibName (Position as Integer, value as UInt32)
+	#tag EndExternalMethod
 
 	#tag Method, Flags = &h1, Description = 52656769737465727320612066756E6374696F6E20746F2062652063616C6C65642028612063616C6C6261636B29206576657279206D696C6C697365636F6E64207769746820746865206C6174657374204750494F2073616D706C65732E20
 		Protected Sub SamplesFunction(Bits As uint32, assigns  SampleFunction as Ptr)
@@ -1527,19 +1718,6 @@ Protected Module pigpio
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h1, Description = 546869732066756E6374696F6E20636C6F736573207468652073657269616C20646576696365206173736F63696174656420776974682068616E646C652E20
-		Protected Sub SerClose(SerHandle as uinteger)
-		  #If TargetARM And TargetLinux Then
-		    dim result as integer = pigpio.serClose(serhandle)
-		    if result < 0 then MakeException (result) 
-		  #else
-		    PigpioErrorCheck
-		    #pragma unused SerHandle
-		  #endif
-		  
-		End Sub
-	#tag EndMethod
-
 	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Soft Declare Function serClose Lib pigpioLibName (SerHandle as uinteger) As Integer
 	#tag EndExternalMethod
@@ -1547,6 +1725,32 @@ Protected Module pigpio
 	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Soft Declare Function serDataAvailable Lib pigpioLibName (SerHandle as uinteger) As Integer
 	#tag EndExternalMethod
+
+	#tag Method, Flags = &h1, Description = 5265616473206120627974652066726F6D207468652073657269616C20706F7274206173736F63696174656420776974682068616E646C652E
+		Protected Function SerialByte(serHandle as Uinteger) As UInt8
+		  #If TargetARM And TargetLinux Then
+		    dim result as integer = pigpio.serReadByte(serHandle)
+		    if result < 0 then MakeException (result) else Return result
+		  #else
+		    PigpioErrorCheck
+		    #pragma unused serHandle
+		  #endif
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h1, Description = 5772697465732061206279746520746F207468652073657269616C20706F7274206173736F63696174656420776974682068616E646C652E
+		Protected Sub SerialByte(serHandle as Uinteger,  assigns value as uint8)
+		  #If TargetARM And TargetLinux Then
+		    dim result as integer = pigpio.serWriteByte(serHandle, value)
+		    if result < 0 then MakeException (result)
+		  #else
+		    PigpioErrorCheck
+		    #pragma unused serHandle
+		    #pragma unused value
+		  #endif
+		  
+		End Sub
+	#tag EndMethod
 
 	#tag Method, Flags = &h1, Description = 546869732066756E6374696F6E2072657475726E7320746865206E756D626572206F6620627974657320617661696C61626C6520746F20626520726561642066726F6D2074686520646576696365206173736F63696174656420776974682068616E646C652E20
 		Protected Function SerialPortAvailableData(serHandle as Uinteger) As Integer
@@ -1559,32 +1763,6 @@ Protected Module pigpio
 		  #endif
 		  
 		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h1, Description = 5265616473206120627974652066726F6D207468652073657269616C20706F7274206173736F63696174656420776974682068616E646C652E
-		Protected Function SerialPortByte(serHandle as Uinteger) As UInt8
-		  #If TargetARM And TargetLinux Then
-		    dim result as integer = pigpio.serReadByte(serHandle)
-		    if result < 0 then MakeException (result) else Return result
-		  #else
-		    PigpioErrorCheck
-		    #pragma unused serHandle
-		  #endif
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h1, Description = 5772697465732061206279746520746F207468652073657269616C20706F7274206173736F63696174656420776974682068616E646C652E
-		Protected Sub SerialPortByte(serHandle as Uinteger,  assigns value as uint8)
-		  #If TargetARM And TargetLinux Then
-		    dim result as integer = pigpio.serWriteByte(serHandle, value)
-		    if result < 0 then MakeException (result)
-		  #else
-		    PigpioErrorCheck
-		    #pragma unused serHandle
-		    #pragma unused value
-		  #endif
-		  
-		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1, Description = 526561647320757020636F756E742062797465732066726F6D20746865207468652073657269616C20706F7274206173736F63696174656420776974682068616E646C6520616E6420777269746573207468656D20746F206275662E20
@@ -1617,6 +1795,19 @@ Protected Module pigpio
 		  #endif
 		  
 		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h1, Description = 546869732066756E6374696F6E20636C6F736573207468652073657269616C20646576696365206173736F63696174656420776974682068616E646C652E20
+		Protected Sub SerialPortClose(SerHandle as uinteger)
+		  #If TargetARM And TargetLinux Then
+		    dim result as integer = pigpio.serClose(serhandle)
+		    if result < 0 then MakeException (result) 
+		  #else
+		    PigpioErrorCheck
+		    #pragma unused SerHandle
+		  #endif
+		  
+		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1, Description = 4F70656E7320612073657269616C206465766963652061742061207370656369666965642062617564207261746520776974682073706563696669656420666C61677320616E642072657475726E73206974732068616E646C652E
@@ -1885,6 +2076,17 @@ Protected Module pigpio
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h1, Description = 536C6565707320612073656C65637465642074696D6520706572696F642E200A5573652044656C617920666F722073686F72742064656C6179732028E289A420353020C2B57365637329
+		Protected Sub SleepSeconds(Seconds as Double)
+		  #If TargetARM And TargetLinux Then
+		    time_sleep(seconds)
+		  #else
+		    PigpioErrorCheck
+		    #pragma unused Seconds
+		  #endif
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h1, Description = 536C6565707320756E74696C207468652073656C6563746564207365636F6E647320616E64206D6963726F7365636F6E6473206D61746368657320746865205365636F6E647346726F6D313937302076616C75652E
 		Protected Sub SleepUntil(Seconds as Uinteger, micros as Uinteger)
 		  #If TargetARM And TargetLinux Then
@@ -1915,10 +2117,14 @@ Protected Module pigpio
 		Attributes( hidden ) Protected Soft Declare Function spiClose Lib pigpioLibName (spihandle as uinteger) As Integer
 	#tag EndExternalMethod
 
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Soft Declare Function spiOpen Lib pigpioLibName (spiChannel as uinteger, baud as uinteger, flags as uinteger) As Integer
+	#tag EndExternalMethod
+
 	#tag Method, Flags = &h1, Description = 52657475726E7320612068616E646C6520666F72207468652053504920646576696365206F6E20746865206368616E6E656C2E20446174612077696C6C206265207472616E736665727265642061742062617564206269747320706572207365636F6E642E2054686520666C616773206D6179206265207573656420746F206D6F64696679207468652064656661756C74206265686176696F7572206F6620342D77697265206F7065726174696F6E2C206D6F646520302C20616374697665206C6F7720636869702073656C6563742E20
-		Protected Function spiOpen(SpiChannel as Uinteger, baud as uinteger, spiFlags as uinteger) As UInteger
+		Protected Function spiOpenChannel(SpiChannel as Uinteger, baud as uinteger, spiFlags as uinteger) As UInteger
 		  #If TargetARM And TargetLinux Then
-		    dim result as integer=  pigpio.getspiOpen(SpiChannel, baud, spiFlags)
+		    dim result as integer=  pigpio.spiOpen(SpiChannel, baud, spiFlags)
 		    if result < 0 then MakeException (result) else return result
 		  #else
 		    PigpioErrorCheck
@@ -2006,16 +2212,6 @@ Protected Module pigpio
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h1, Description = 52657475726E73207468652063757272656E742073797374656D207469636B2C20746865206E756D626572206F66206D6963726F7365636F6E64732073696E63652073797374656D20626F6F742E200A4173207469636B20697320616E20756E7369676E656420333220626974207175616E746974792069742077726170732061726F756E6420616674657220325E3332206D6963726F7365636F6E64732C20776869636820697320617070726F78696D6174656C79203120686F7572203132206D696E757465732E20
-		Protected Function Tick() As uint32
-		  #If TargetARM And TargetLinux Then
-		    return  pigpio.gpioTick()
-		  #else
-		    PigpioErrorCheck
-		  #endif
-		End Function
-	#tag EndMethod
-
 	#tag Method, Flags = &h1, Description = 52656769737465727320612066756E6374696F6E20746F2062652063616C6C65642028612063616C6C6261636B29206576657279206D696C6C6973206D696C6C697365636F6E64732E200A5468652063616C6C6261636B2074616B657320616E642073656E6473206E6F20706172616D65746572732E
 		Protected Sub TimerFunction(TimerNumber As Uinteger, MilliSeconds As Uinteger, Assigns TimerFuncCallback as Ptr)
 		  #If TargetARM And TargetLinux Then
@@ -2040,9 +2236,18 @@ Protected Module pigpio
 		    #pragma unused TimerNumber
 		    #pragma unused MilliSeconds
 		    #pragma Unused TimerFuncCallback
+		    #pragma unused userdata
 		  #endif
 		End Sub
 	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Soft Declare Sub time_sleep Lib pigpioLibName (seconds as double)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Soft Declare Function time_time Lib pigpioLibName () As Double
+	#tag EndExternalMethod
 
 	#tag Method, Flags = &h1, Description = 546869732066756E6374696F6E2073656E6473206120747269676765722070756C736520746F2061204750494F2E20546865204750494F2069732073657420746F206C6576656C20666F722070756C73654C656E206D6963726F7365636F6E64732028312D3130302920616E64207468656E20726573657420746F206E6F74206C6576656C2E2020
 		Protected Sub Trigger(UserGPIO as UInteger, PulseLength as Uinteger, Level as Boolean)
@@ -2056,6 +2261,49 @@ Protected Module pigpio
 		    #pragma unused level
 		  #endif
 		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1, Description = 4372656174657320612077617665666F726D2066726F6D2074686520646174612070726F766964656420627920746865207072696F722063616C6C7320746F20746865206770696F576176654164642A2066756E6374696F6E732E2055706F6E2073756363657373206120776176652069642067726561746572207468616E206F7220657175616C20746F20302069732072657475726E65642E
+		Protected Function WaveformAddGeneric(Pulses() As rawWave) As integer
+		  #If TargetARM And TargetLinux Then
+		    dim count as uinteger = Pulses.Ubound + 1
+		    dim mb as new xojo.Core.MutableMemoryBlock(16*(count))
+		    count = count -1
+		    for q as uinteger = 0 to count
+		      dim pulse as rawWave = Pulses(q)
+		      mb.ptrvalue(q*16).rawwave = pulse
+		    next
+		    dim result as integer = pigpio.rawWaveAddGeneric(count+1, mb.data)
+		    if result < 0 then MakeException (result) else return result
+		  #else
+		    PigpioErrorCheck
+		    #pragma unused pulses
+		  #endif
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h1, Description = 546865204C696E75782061646472657373206F6620636F6E746F6C20626C6F636B2063624E756D2E20
+		Protected Function WaveformCBAddress(CBNumber As Integer) As Ptr
+		  #If TargetARM And TargetLinux Then
+		    return  pigpio.rawWaveCBAdr(cbnumber)
+		  #else
+		    PigpioErrorCheck
+		    #pragma unused CBNumber
+		  #endif
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h1, Description = 546865206E756D626572206F6620746865206362206265696E672063757272656E746C79206F75747075742E20
+		Protected Function WaveformCBNumber() As Uinteger
+		  #If TargetARM And TargetLinux Then
+		    return  pigpio.rawWaveCB()
+		  #else
+		    PigpioErrorCheck
+		  #endif
+		  
+		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h1, Description = 4372656174657320612077617665666F726D2066726F6D2074686520646174612070726F766964656420627920746865207072696F722063616C6C7320746F20746865206770696F576176654164642A2066756E6374696F6E732E2055706F6E2073756363657373206120776176652069642067726561746572207468616E206F7220657175616C20746F20302069732072657475726E65642E
@@ -2089,6 +2337,79 @@ Protected Module pigpio
 		  #else
 		    PigpioErrorCheck
 		    #pragma unused Waveform
+		  #endif
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1, Description = 5072696E74732061207265616461626C652076657273696F6E206F66207468652063757272656E742077617665666F726D20746F207374646572722E20
+		Protected Function WaveformDump() As integer
+		  #If TargetARM And TargetLinux Then
+		     pigpio.rawDumpWave()
+		  #else
+		    PigpioErrorCheck
+		  #endif
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h1, Description = 476574732064657461696C732061626F7574207468652077617665207769746820696420776176655F69642E20
+		Protected Function WaveformGetInfo(Wave As Integer) As rawWaveInfo
+		  #If TargetARM And TargetLinux Then
+		    return pigpio.rawWaveInfo(wave)
+		  #else
+		    PigpioErrorCheck
+		    #pragma unused wave
+		  #endif
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h1, Description = 4765747320746865207761766520696E70757420706172616D657465722073746F72656420617420706F732E20
+		Protected Function WaveformInputAtPosition(position As Integer) As uint32
+		  #If TargetARM And TargetLinux Then
+		    return pigpio.rawWaveGetIn(position)
+		  #else
+		    PigpioErrorCheck
+		    #pragma unused position
+		  #endif
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h1, Description = 5365747320746865207761766520696E70757420706172616D657465722073746F72656420617420706F732E20
+		Protected Sub WaveformInputAtPosition(position As Integer, assigns value as UInt32)
+		  #If TargetARM And TargetLinux Then
+		     pigpio.rawWaveSetIn(position, value)
+		  #else
+		    PigpioErrorCheck
+		    #pragma unused position
+		    #pragma unused value
+		  #endif
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1, Description = 47657473207468652077617665206F757470757420706172616D657465722073746F72656420617420706F732E20
+		Protected Function WaveformOutputAtPosition(position As Integer) As uint32
+		  #If TargetARM And TargetLinux Then
+		    return pigpio.rawWaveGetOut(position)
+		  #else
+		    PigpioErrorCheck
+		    #pragma unused position
+		  #endif
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h1, Description = 53657473207468652077617665206F757470757420706172616D657465722073746F72656420617420706F732E20
+		Protected Sub WaveformOutputAtPosition(position As Integer, assigns value as UInt32)
+		  #If TargetARM And TargetLinux Then
+		     pigpio.rawWaveSetOut(position, value)
+		  #else
+		    PigpioErrorCheck
+		    #pragma unused position
+		    #pragma unused value
 		  #endif
 		  
 		End Sub
@@ -2165,7 +2486,7 @@ Protected Module pigpio
 	#tag EndNote
 
 
-	#tag ComputedProperty, Flags = &h1, Description = 546865206861726477617265207265766973696F6E2E2028726561642D6F6E6C7929
+	#tag ComputedProperty, Flags = &h0, Description = 546865206861726477617265207265766973696F6E2E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
 			  #If TargetARM And TargetLinux Then
@@ -2176,7 +2497,7 @@ Protected Module pigpio
 			  
 			End Get
 		#tag EndGetter
-		Protected HardwareRevision As UInteger
+		HardwareRevision As UInteger
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h21
@@ -2192,7 +2513,60 @@ Protected Module pigpio
 		Private IntegerSize As Integer
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h1, Description = 5468652070696770696F2076657273696F6E2E2028726561642D6F6E6C7929
+	#tag ComputedProperty, Flags = &h0, Description = 5468652063757272656E74206C69627261727920696E7465726E616C20636F6E66696775726174696F6E2073657474696E67732E
+		#tag Getter
+			Get
+			  #If TargetARM And TargetLinux Then
+			    return pigpio.gpioCfgGetInternals()
+			  #else
+			    PigpioErrorCheck
+			  #endif
+			  
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  #If TargetARM And TargetLinux Then
+			    dim result as integer = gpioCfgSetInternals(value)
+			    if result < 0 then MakeException(result)
+			  #else
+			    PigpioErrorCheck
+			    #pragma unused value
+			  #endif
+			  
+			End Set
+		#tag EndSetter
+		Internals As UInt32
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 5468652063757272656E742074696D6520696E207365636F6E64732073696E6365207468652045706F63682E
+		#tag Getter
+			Get
+			  #If TargetARM And TargetLinux Then
+			    return pigpio.time_time()
+			  #else
+			    PigpioErrorCheck
+			  #endif
+			  
+			End Get
+		#tag EndGetter
+		SecsSince1970 As Double
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 5468652063757272656E742073797374656D207469636B2C20746865206E756D626572206F66206D6963726F7365636F6E64732073696E63652073797374656D20626F6F742E200A4173207469636B20697320616E20756E7369676E656420333220626974207175616E746974792069742077726170732061726F756E6420616674657220325E3332206D6963726F7365636F6E64732C20776869636820697320617070726F78696D6174656C79203120686F7572203132206D696E757465732E20
+		#tag Getter
+			Get
+			  #If TargetARM And TargetLinux Then
+			    return  pigpio.gpioTick()
+			  #else
+			    PigpioErrorCheck
+			  #endif
+			End Get
+		#tag EndGetter
+		Tick As Uint32
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 5468652070696770696F2076657273696F6E2E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
 			  #If TargetARM And TargetLinux Then
@@ -2203,7 +2577,7 @@ Protected Module pigpio
 			  
 			End Get
 		#tag EndGetter
-		Protected Version As UInteger
+		Version As UInteger
 	#tag EndComputedProperty
 
 
@@ -2217,6 +2591,27 @@ Protected Module pigpio
 	#tag EndConstant
 
 	#tag Constant, Name = pigpioName, Type = Text, Dynamic = False, Default = \"pigpioLib", Scope = Private
+	#tag EndConstant
+
+	#tag Constant, Name = PI_DEFAULT_UPDATE_MASK_A_B2, Type = Double, Dynamic = False, Default = \"&hFBC6CF9C", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = PI_DEFAULT_UPDATE_MASK_B1, Type = Double, Dynamic = False, Default = \"&h03E6CF93", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = PI_DEFAULT_UPDATE_MASK_R3, Type = Double, Dynamic = False, Default = \"&h0FFFFFFC", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = PI_DEFAULT_UPDATE_MASK_UNKNOWN, Type = Double, Dynamic = False, Default = \"&hFFFFFFFF", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = PI_DISABLE_FIFO_IF, Type = Double, Dynamic = False, Default = \"1", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = PI_DISABLE_SOCK_IF, Type = Double, Dynamic = False, Default = \"2", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = PI_LOCALHOST_SOCK_IF, Type = Double, Dynamic = False, Default = \"4", Scope = Protected
 	#tag EndConstant
 
 
@@ -2238,6 +2633,49 @@ Protected Module pigpio
 		Level As Uint32
 	#tag EndStructure
 
+	#tag Structure, Name = rawWave, Flags = &h0
+		gpioOn As Uint32
+		  gpioOff As Uint32
+		  usDelay As Uint32
+		flags As UInt32
+	#tag EndStructure
+
+	#tag Structure, Name = rawWaveInfo, Flags = &h0
+		botCB as Uint16
+		  topCB as Uint16
+		  botOOL As Uint16
+		  topOOL As Uint16
+		  deleted As Uint16
+		  numCB as Uint16
+		  numBOOL As Uint16
+		numTOOL As Uint16
+	#tag EndStructure
+
+
+	#tag Enum, Name = cfgMicros, Type = Integer, Flags = &h0
+		EachMicrosecond = 1
+		  EverySecond = 2
+		  EveryFourth = 4
+		  EveryFifth = 5
+		  EveryEigth = 8
+		EveryTenth = 10
+	#tag EndEnum
+
+	#tag Enum, Name = cfgPeripheral, Type = Integer, Flags = &h0
+		PWM = 0
+		PCM = 1
+	#tag EndEnum
+
+	#tag Enum, Name = cfgWhat, Type = Integer, Flags = &h0
+		PrintEnhancedTerminationStatistics = 562484977
+		SetInitalDebugLevel = 984762879
+	#tag EndEnum
+
+	#tag Enum, Name = memAllocMode, Type = Integer, Flags = &h0
+		Automatic = 0
+		  Pagemap = 1
+		Mailbox = 2
+	#tag EndEnum
 
 	#tag Enum, Name = PigpioEdge, Type = UInteger, Flags = &h0
 		Rising = 0

@@ -10,7 +10,7 @@ Protected Class IRMotionDetector
 		Sub Constructor(GpioPin as Integer)
 		  mGpioPin = GpioPin
 		  pigpio.Mode(GpioPin) = PigpioMode.Input
-		  pigpio.PullUpValue(GpioPin) = PigpioPud.Up
+		  pigpio.PullUpdownValue(GpioPin) = PigpioPud.Up
 		  pigpio.InterruptFunction (GpioPin, PigpioEdge.Either, 0) = addressof MotionReceiver
 		  
 		End Sub
