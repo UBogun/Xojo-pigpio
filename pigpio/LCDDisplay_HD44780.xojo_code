@@ -511,6 +511,72 @@ Protected Class LCDDisplay_HD44780
 
 	#tag ViewBehavior
 		#tag ViewProperty
+			Name="AutoScroll"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Blink"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="CharactersPerRow"
+			Group="Behavior"
+			InitialValue="16"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Cursor"
+			Group="Behavior"
+			Type="Cursortype"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Block"
+				"1 - Underline"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="D4Pin"
+			Group="Behavior"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="D5Pin"
+			Group="Behavior"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="D6Pin"
+			Group="Behavior"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="D7Pin"
+			Group="Behavior"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Display"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="EnablePin"
+			Group="Behavior"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Entrymode"
+			Group="Behavior"
+			Type="EntryMode"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - LeftToRight"
+				"1 - RightToLeft"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Index"
 			Visible=true
 			Group="ID"
@@ -529,6 +595,17 @@ Protected Class LCDDisplay_HD44780
 			Visible=true
 			Group="ID"
 			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Rows"
+			Group="Behavior"
+			InitialValue="4"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="RSPin"
+			Group="Behavior"
+			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"

@@ -51,6 +51,15 @@ Protected Class UltrasonicSensor
 	#tag EndHook
 
 
+	#tag Note, Name = Read me
+		Again, the code to read this sensor was taken from Einhugur’s Tech Blog.
+		See https://einhugur.com/blog/index.php/xojo-gpio/hc-sr04-ultrasonic-sensor/ for wiring and important resistors!
+		
+		I included a bad result check and taking air temperatur into account.
+		
+	#tag EndNote
+
+
 	#tag Property, Flags = &h21
 		Private mSensorPin As Integer
 	#tag EndProperty
@@ -100,6 +109,11 @@ Protected Class UltrasonicSensor
 			Type="String"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="SensorPin"
+			Group="Behavior"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
@@ -110,6 +124,11 @@ Protected Class UltrasonicSensor
 			Visible=true
 			Group="Position"
 			InitialValue="0"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="TriggerPin"
+			Group="Behavior"
 			Type="Integer"
 		#tag EndViewProperty
 	#tag EndViewBehavior

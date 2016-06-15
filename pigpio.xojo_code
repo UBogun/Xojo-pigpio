@@ -464,6 +464,14 @@ Protected Module pigpio
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Soft Declare Function gpioSetGetSamplesFunc Lib pigpioLibName (SampleFunction as Ptr, Bits as Uint32) As Integer
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Soft Declare Function gpioSetGetSamplesFuncEx Lib pigpioLibName (SampleFunction as Ptr, Bits as Uint32, userData as Ptr) As Integer
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Soft Declare Function gpioSetISRFunc Lib pigpioLibName (gpio as uinteger, edge as pigpio . PigpioEdge, timeout as integer, ISRFunc as ptr) As Integer
 	#tag EndExternalMethod
 
@@ -485,6 +493,22 @@ Protected Module pigpio
 
 	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Soft Declare Function gpioSetPWMrange Lib pigpioLibName (gpio as uinteger, range as uinteger) As Integer
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Soft Declare Function gpioSetSignalFunc Lib pigpioLibName (signalnum as uinteger, callback As Ptr) As Integer
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Soft Declare Function gpioSetSignalFuncEx Lib pigpioLibName (signalnum as uinteger, callback As Ptr, userData as Ptr) As Integer
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Soft Declare Function gpioSetTimerFunc Lib pigpioLibName (Timernum as uinteger, Millis As uinteger, TimerFunction As Ptr) As Integer
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Soft Declare Function gpioSetTimerFuncEx Lib pigpioLibName (Timernum as uinteger, Millis As uinteger, TimerFunction As Ptr, userData As Ptr) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -1006,7 +1030,7 @@ Protected Module pigpio
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h1, Description = 52656769737465727320612066756E6374696F6E20746F2062652063616C6C65642028612063616C6C6261636B29207768656E657665722074686520737065636966696564204750494F20696E74657272757074206F63637572732E20
+	#tag Method, Flags = &h1, Description = 52656769737465727320612066756E6374696F6E20746F2062652063616C6C65642028612063616C6C6261636B29207768656E657665722074686520737065636966696564204750494F20696E74657272757074206F63637572732E200A5468652063616C6C6261636B20686173207468652073616D6520737472756374757265206C696B652074686520416C6572746D6574686F64732063616C6C6261636B2E
 		Protected Sub InterruptFunction(GPIO As UInteger, edge as pigpio.PigpioEdge, timeout as integer, assigns ISRFunction as Ptr)
 		  #If TargetARM And TargetLinux Then
 		    dim result as integer = pigpio.gpioSetISRFunc(GPIO, edge, timeout, ISRFunction)
@@ -1443,6 +1467,44 @@ Protected Module pigpio
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h1, Description = 52656769737465727320612066756E6374696F6E20746F2062652063616C6C65642028612063616C6C6261636B29206576657279206D696C6C697365636F6E64207769746820746865206C6174657374204750494F2073616D706C65732E20
+		Protected Sub SamplesFunction(Bits As uint32, assigns  SampleFunction as Ptr)
+		  #If TargetARM And TargetLinux Then
+		    dim result as integer = pigpio.gpioSetGetSamplesFunc(SampleFunction, Bits)
+		    if result < 0 then MakeException (result) 
+		  #else
+		    PigpioErrorCheck
+		    #pragma unused Bits
+		    #pragma unused SampleFunction
+		  #endif
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1, Description = 52656769737465727320612066756E6374696F6E20746F2062652063616C6C65642028612063616C6C6261636B29206576657279206D696C6C697365636F6E64207769746820746865206C6174657374204750494F2073616D706C65732E20
+		Protected Sub SamplesFunction(Bits As uint32, userData as Xojo.core.MemoryBlock, assigns  SampleFunction as Ptr)
+		  #If TargetARM And TargetLinux Then
+		    dim result as integer = pigpio.gpioSetGetSamplesFuncEx(SampleFunction, Bits, userData.data)
+		    if result < 0 then MakeException (result) 
+		  #else
+		    PigpioErrorCheck
+		    #pragma unused Bits
+		    #pragma unused SampleFunction
+		    #pragma unused userData
+		  #endif
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub SamplesFunctionTemplate(samples as ptr, NumSamples As Integer, userdata as Ptr)
+		  // These are the parameters a SamplesFunction receives
+		  
+		  dim SampleBlock as new xojo.Core.MemoryBlock(samples, NumSamples * 4)
+		  // The samples can be addressed by using SampleBlock.Pigpio.pigpioSample(SampleNumber As integer [< NumSamples])
+		  dim uD As New xojo.Core.MemoryBlock (userData)
+		  #pragma unused uD
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h1, Description = 53657473205365636F6E647320616E64204D6963726F7365636F6E647320746F207468652076616C7565732073696E636520312E312E313937302E
 		Protected Sub SecondsSince1970(byref seconds as uinteger, byref micros as uinteger)
 		  #If TargetARM And TargetLinux Then
@@ -1773,6 +1835,43 @@ Protected Module pigpio
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h1, Description = 52656769737465727320612066756E6374696F6E20746F2062652063616C6C65642028612063616C6C6261636B29207768656E2061207369676E616C206F63637572732E200A43616C6C6261636B2063616E2062652063616E63656C6C65642062792070617373696E67204E696C2E
+		Protected Sub SignalFunction(SignalNumber As UInteger, assigns  Signalcallback as Ptr)
+		  #If TargetARM And TargetLinux Then
+		    dim result as integer = pigpio.gpioSetSignalFunc(SignalNumber, Signalcallback)
+		    if result < 0 then MakeException (result) 
+		  #else
+		    PigpioErrorCheck
+		    #pragma unused SignalNumber
+		    #pragma unused Signalcallback
+		  #endif
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1, Description = 52656769737465727320612066756E6374696F6E20746F2062652063616C6C65642028612063616C6C6261636B29207768656E2061207369676E616C206F63637572732E200A43616C6C6261636B2063616E2062652063616E63656C6C65642062792070617373696E67204E696C2E
+		Protected Sub SignalFunction(SignalNumber As UInteger, userData as Xojo.core.MemoryBlock, assigns  Signalcallback as Ptr)
+		  #If TargetARM And TargetLinux Then
+		    dim result as integer = pigpio.gpioSetSignalFuncEx(SignalNumber, Signalcallback, userData.Data)
+		    if result < 0 then MakeException (result) 
+		  #else
+		    PigpioErrorCheck
+		    #pragma unused SignalNumber
+		    #pragma unused Signalcallback
+		    #Pragma unused userData
+		  #endif
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub SignalFunctionTemplate(signalNumber As Integer, userdata as Ptr)
+		  // These are the parameters a SignalFunction receives
+		  
+		  dim uD as new xojo.Core.MemoryBlock(userdata)
+		  #Pragma unused signalNumber
+		  #pragma unused uD
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h1, Description = 536C6565707320612073656C65637465642074696D6520706572696F642E200A5573652044656C617920666F722073686F72742064656C6179732028E289A420353020C2B57365637329
 		Protected Sub Sleep(Seconds as Uinteger, micros as Uinteger = 0)
 		  #If TargetARM And TargetLinux Then
@@ -1915,6 +2014,34 @@ Protected Module pigpio
 		    PigpioErrorCheck
 		  #endif
 		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h1, Description = 52656769737465727320612066756E6374696F6E20746F2062652063616C6C65642028612063616C6C6261636B29206576657279206D696C6C6973206D696C6C697365636F6E64732E200A5468652063616C6C6261636B2074616B657320616E642073656E6473206E6F20706172616D65746572732E
+		Protected Sub TimerFunction(TimerNumber As Uinteger, MilliSeconds As Uinteger, Assigns TimerFuncCallback as Ptr)
+		  #If TargetARM And TargetLinux Then
+		    dim result as integer = pigpio.gpioSetTimerFunc(TimerNumber, MilliSeconds, TimerFuncCallback)
+		    if result < 0 then MakeException (result) 
+		  #else
+		    PigpioErrorCheck
+		    #pragma unused TimerNumber
+		    #pragma unused MilliSeconds
+		    #pragma Unused TimerFuncCallback
+		  #endif
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1, Description = 52656769737465727320612066756E6374696F6E20746F2062652063616C6C65642028612063616C6C6261636B29206576657279206D696C6C6973206D696C6C697365636F6E64732E200A5468652063616C6C6261636B2074616B657320616E642073656E6473206E6F20706172616D65746572732E
+		Protected Sub TimerFunction(TimerNumber As Uinteger, MilliSeconds As Uinteger, userData As Xojo.Core.Memoryblock, Assigns TimerFuncCallback as Ptr)
+		  #If TargetARM And TargetLinux Then
+		    dim result as integer = pigpio.gpioSetTimerFuncex(TimerNumber, MilliSeconds, TimerFuncCallback, userData.data)
+		    if result < 0 then MakeException (result) 
+		  #else
+		    PigpioErrorCheck
+		    #pragma unused TimerNumber
+		    #pragma unused MilliSeconds
+		    #pragma Unused TimerFuncCallback
+		  #endif
+		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1, Description = 546869732066756E6374696F6E2073656E6473206120747269676765722070756C736520746F2061204750494F2E20546865204750494F2069732073657420746F206C6576656C20666F722070756C73654C656E206D6963726F7365636F6E64732028312D3130302920616E64207468656E20726573657420746F206E6F74206C6576656C2E2020
@@ -2104,6 +2231,11 @@ Protected Module pigpio
 		gpioOn as uint32
 		  gpioOff as uint32
 		usDelay as uint32
+	#tag EndStructure
+
+	#tag Structure, Name = pigpioSample, Flags = &h0
+		Tick as uint32
+		Level As Uint32
 	#tag EndStructure
 
 

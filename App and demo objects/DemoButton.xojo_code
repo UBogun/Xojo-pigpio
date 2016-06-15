@@ -12,6 +12,7 @@ Inherits pigpio.Button
 	#tag Method, Flags = &h1
 		Protected Shared Sub DemoPressReceiver(GPIO As Integer, Level as Integer, Tick as Uint32)
 		  #pragma StackOverflowChecking false
+		  #pragma BackgroundTasks False
 		  #if TargetLinux and TargetARM 
 		    if GPIO = 6 then call pigpio.gpiowrite(19, abs(level-1))
 		  #else
@@ -24,11 +25,6 @@ Inherits pigpio.Button
 
 
 	#tag ViewBehavior
-		#tag ViewProperty
-			Name="DepressTick"
-			Group="Behavior"
-			Type="uint32"
-		#tag EndViewProperty
 		#tag ViewProperty
 			Name="GpioPin"
 			Group="Behavior"
@@ -53,11 +49,6 @@ Inherits pigpio.Button
 			Visible=true
 			Group="ID"
 			Type="String"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="pressTick"
-			Group="Behavior"
-			Type="uint32"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"

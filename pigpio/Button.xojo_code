@@ -58,11 +58,6 @@ Protected Class Button
 
 	#tag ViewBehavior
 		#tag ViewProperty
-			Name="DepressTick"
-			Group="Behavior"
-			Type="uint32"
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="GpioPin"
 			Group="Behavior"
 			Type="Integer"
@@ -86,11 +81,6 @@ Protected Class Button
 			Visible=true
 			Group="ID"
 			Type="String"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="pressTick"
-			Group="Behavior"
-			Type="uint32"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
