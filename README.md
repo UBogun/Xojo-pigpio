@@ -26,7 +26,7 @@ All public methods and properties are documented. Look into the description tags
 > Instead, interrupt-driven controls feature a shared method that is exectued on the background thread. Therefore you must not use or create any Xojo objects, but it is safe to use  external methods and datatypes. Please see the DemoButton class for an example.  
 If you need to use Xojo methods that lock to an object, it is safe to store the interrupt parameters into Xojo properties. Have a timer look for changes in these. See https://einhugur.com/blog/index.php/xojo-gpio/hc-sr501-sensor/ for an example of combined uses.  
 >  
-> Please note that the use of pigpio timers, interrupts and other callbacks is subject to discussion on the Xojo forums and not supported by Xojo officially. Therefore, it may stop working one day. In extensive tests and conversations with other developers, I have found the current solution to be stable as long as you do not access Xojo instances and instance properties and methods. Intead, you have to hardcode results and properties into shared or otherwise safe properties and use the shared pigpio external declares.   
+> Please note that the use of pigpio timers, interrupts and other callbacks is subject to discussion on the Xojo forums and not supported by Xojo officially. Therefore, it may stop working one day. In extensive tests and conversations with other developers, I have found the current solution to be stable as long as you do not access Xojo instances and instance properties and methods. Instead, you have to hardcode results and properties into shared or otherwise safe properties and use the shared pigpio external declares.   
 See https://forum.xojo.com/32985-pigpio-library-for-xojo  
 
 ###Credits
