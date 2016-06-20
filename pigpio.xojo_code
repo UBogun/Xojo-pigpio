@@ -123,6 +123,8 @@ Protected Module pigpio
 
 	#tag Method, Flags = &h1, Description = 52657475726E73207468652050574D20647574796379636C652073657474696E6720666F7220746865204750494F2C206F722072616973657320616E20657863657074696F6E
 		Protected Function AnalogValue(GPIO As UInteger) As UInteger
+		  #pragma StackOverflowChecking false
+		  #Pragma BackgroundTasks false
 		  #If TargetARM And TargetLinux Then
 		    dim result as integer = pigpio.gpioGetPWMdutycycle(GPIO)
 		    if result < 0 then MakeException (result) else return result
@@ -135,6 +137,8 @@ Protected Module pigpio
 
 	#tag Method, Flags = &h1, Description = 5374617274732050574D206F6E20746865204750494F2C20647574796379636C65206265747765656E203020286F66662920616E642072616E6765202866756C6C79206F6E292E2052616E67652064656661756C747320746F203235352E20
 		Protected Sub AnalogValue(User_GPIO As UInteger, assigns dutyCycle as uinteger)
+		  #pragma StackOverflowChecking false
+		  #Pragma BackgroundTasks false
 		  #If TargetARM And TargetLinux Then
 		    dim result as integer = pigpio.gpioPWM(User_GPIO, dutyCycle)
 		    if result < 0 then MakeException (result)
@@ -574,8 +578,8 @@ Protected Module pigpio
 		Attributes( hidden ) Protected Soft Declare Function gpioNotifyPause Lib pigpioLibName (notificationhandle as uinteger) As Integer
 	#tag EndExternalMethod
 
-	#tag ExternalMethod, Flags = &h1
-		Attributes( hidden ) Protected Soft Declare Function gpioPWM Lib pigpioLibName (gpio as uinteger, dutycycle as uinteger) As Integer
+	#tag ExternalMethod, Flags = &h0
+		Attributes( hidden ) Soft Declare Function gpioPWM Lib pigpioLibName (gpio as uinteger, dutycycle as uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h0
@@ -1216,8 +1220,8 @@ Protected Module pigpio
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
-		Sub InterruptFunctionTemplate(GPIO As Integer, Level as Integer, Tick as Uint32)
+	#tag Method, Flags = &h21
+		Private Sub InterruptFunctionTemplate(GPIO As Integer, Level as Integer, Tick as Uint32)
 		  // These are the parameters an InterruptFunction receives
 		  // Take caution, copies of this Method will be called on a background thread!
 		  
@@ -2345,7 +2349,7 @@ Protected Module pigpio
 	#tag Method, Flags = &h1, Description = 5072696E74732061207265616461626C652076657273696F6E206F66207468652063757272656E742077617665666F726D20746F207374646572722E20
 		Protected Function WaveformDump() As integer
 		  #If TargetARM And TargetLinux Then
-		     pigpio.rawDumpWave()
+		    pigpio.rawDumpWave()
 		  #else
 		    PigpioErrorCheck
 		  #endif
@@ -2380,7 +2384,7 @@ Protected Module pigpio
 	#tag Method, Flags = &h1, Description = 5365747320746865207761766520696E70757420706172616D657465722073746F72656420617420706F732E20
 		Protected Sub WaveformInputAtPosition(position As Integer, assigns value as UInt32)
 		  #If TargetARM And TargetLinux Then
-		     pigpio.rawWaveSetIn(position, value)
+		    pigpio.rawWaveSetIn(position, value)
 		  #else
 		    PigpioErrorCheck
 		    #pragma unused position
@@ -2405,7 +2409,7 @@ Protected Module pigpio
 	#tag Method, Flags = &h1, Description = 53657473207468652077617665206F757470757420706172616D657465722073746F72656420617420706F732E20
 		Protected Sub WaveformOutputAtPosition(position As Integer, assigns value as UInt32)
 		  #If TargetARM And TargetLinux Then
-		     pigpio.rawWaveSetOut(position, value)
+		    pigpio.rawWaveSetOut(position, value)
 		  #else
 		    PigpioErrorCheck
 		    #pragma unused position
@@ -2479,10 +2483,10 @@ Protected Module pigpio
 	#tag Note, Name = Status
 		
 		missing:
-		i2cSegments – unertain about the neture of a I2C Segment
+		i2cSegments – unertain about the nature of a I2C Segment
 		i2cZip - need a closer look into …
 		bbI2CZip  ditto
-		
+		Scripts
 	#tag EndNote
 
 
@@ -2710,11 +2714,21 @@ Protected Module pigpio
 
 	#tag ViewBehavior
 		#tag ViewProperty
+			Name="HardwareRevision"
+			Group="Behavior"
+			Type="UInteger"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Index"
 			Visible=true
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Internals"
+			Group="Behavior"
+			Type="UInt32"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -2730,10 +2744,20 @@ Protected Module pigpio
 			Type="String"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="SecsSince1970"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
 			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Tick"
+			Group="Behavior"
+			Type="Uint32"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -2741,6 +2765,11 @@ Protected Module pigpio
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Version"
+			Group="Behavior"
+			Type="UInteger"
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Module

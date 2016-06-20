@@ -42,20 +42,11 @@ Protected Class UltrasonicSensor
 	#tag EndMethod
 
 
-	#tag Hook, Flags = &h0, Description = 4669726573207768656E20746F6F206D616E79206D6561737572656D656E747320696E206120726F77206661696C65642E0A557365204572726F72546F6C6572616E636520746F2073657420746869732076616C75652E
-		Event Error()
-	#tag EndHook
-
-	#tag Hook, Flags = &h0, Description = 4669726573207768656E20746F6F206D616E79206D6561737572656D656E747320696E206120726F77206661696C65642E0A557365204572726F72546F6C6572616E636520746F2073657420746869732076616C75652E
-		Event MeasureResult(Distance as Double)
-	#tag EndHook
-
-
 	#tag Note, Name = Read me
 		Again, the code to read this sensor was taken from Einhugur’s Tech Blog.
 		See https://einhugur.com/blog/index.php/xojo-gpio/hc-sr04-ultrasonic-sensor/ for wiring and important resistors!
 		
-		I included a bad result check and taking air temperatur into account.
+		I included a bad result check and taking air temperature into account.
 		
 	#tag EndNote
 

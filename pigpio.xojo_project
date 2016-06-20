@@ -3,6 +3,7 @@ RBProjectVersion=2016.011
 MinIDEVersion=20070100
 BuildSteps=Build Automation;Build Automation.xojo_code;&h4F802FFF;&h0;false
 Module=pigpio;pigpio.xojo_code;&h532F57FF;&h0;false
+Class=RGBLED;pigpio/RGBLED.xojo_code;&h73B5EFFF;&h532F57FF;false
 Class=LCDDisplay_HD44780;pigpio/LCDDisplay_HD44780.xojo_code;&h6B65C7FF;&h532F57FF;false
 Module=BitWiseExtension;BitWiseExtension.xojo_code;&h327CF7FF;&h0;false
 Class=Button;pigpio/Button.xojo_code;&hA0AC7FF;&h532F57FF;false

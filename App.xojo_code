@@ -16,13 +16,15 @@ Inherits ConsoleApplication
 		    pigpio.SecondsSinceInit(secs, micros) // and how long since init?
 		    print "Seconds/µseconds since initialization: "+ secs.totext+":"+micros.totext
 		    print ""
-		    
+		     
 		    do
 		      print "Select a demo"
 		      print "1 – Button with LED"
 		      print "2 – LCD Display"
 		      print "3 – IR Motion Detector"
 		      print "4 – Ultrasonic Sensor"
+		      print "5 – RGB LED with Xojo timer pulse"
+		      print "6 – RGB LED with pigpio timer pulse"
 		      print "q to quit"
 		      print"?"
 		      dim result as string = Input
@@ -97,6 +99,49 @@ Inherits ConsoleApplication
 		        if ultrasonic = nil then UltraSonic = new pigpio.UltrasonicSensor(16, 26)
 		        print "Distance: "+UltraSonic.MeasureDistance.ToText+" cm"
 		        
+		      case "5"
+		        print "RGB LED with Xojo timer"
+		        print "You should have an RGB LED connected to Pins 12, 16 and 18 (RGB) (and resistors if necessary)"
+		        print "This demo will install a Xojo timer to pulse the brightness of the LED"
+		        print "It will deinstall the timer once you hit x on the keyboard"
+		        print "Note: The cancel keycode is not working yet. You have to cancel the app hitting CMD-C."
+		        print "Ok to continue?"
+		        result = Input
+		        if result <> "y" then exit
+		        RGBLED = new pigpio.RGBLED(12, 16, 18)
+		        RGBLED.LEDColor = &c75D2FE00
+		        app.OrigRed = RGBLed.LEDColor.Red
+		        app.OrigBlue = RGBLed.LEDColor.Blue
+		        app.OrigGreen = RGBLed.LEDColor.Green
+		        pulsetimer = new timer
+		        AddHandler PulseTimer.action, Addressof PulseLED
+		        PulseTimer.Period = 10
+		        PulseTimer.mode = timer.ModeMultiple
+		        PulseTimer.Enabled = true
+		        result =""
+		        do
+		          app.DoEvents
+		          result = result + stdin.ReadAll
+		        loop until result.Right(1) = "x"
+		        
+		        PulseTimer.Mode = timer.ModeOff
+		        RemoveHandler PulseTimer.action, Addressof PulseLED
+		        
+		      case "6"
+		        print "RGB LED with pigpio timer"
+		        print "You should have an RGB LED connected to Pins 12, 16 and 18 (RGB) (and resistors if necessary)"
+		        print "This demo will install a pigpio timer to pulse the brightness of the LED"
+		        print "This timer will work until you quit the demo app"
+		        print "Ok to continue?"
+		        result = Input
+		        if result <> "y" then exit
+		        RGBLED = new pigpio.RGBLED(12, 16, 18)
+		        RGBLED.LEDColor = &c8B12FD00
+		        app.OrigRed = RGBLed.LEDColor.Red
+		        app.OrigBlue = RGBLed.LEDColor.Blue
+		        app.OrigGreen = RGBLed.LEDColor.Green
+		        
+		        pigpio.TimerFunction (1, 10) = Addressof PulseLEDpgigioTimer
 		      case "testpin"
 		        print "enter pin to check in a tight loop"
 		        result = input
@@ -121,12 +166,109 @@ Inherits ConsoleApplication
 		  try
 		    pigpio.Terminate
 		  end try
-		  print "The app must quit because of an exception "+error.ErrorNumber.ToText
+		  print "The app must quit because of an exception "+error.ErrorNumber.ToText+EndOfLine+error.Message
 		  print error.Reason
 		  quit
 		End Function
 	#tag EndEvent
 
+
+	#tag Method, Flags = &h0
+		Sub PulseLED(t as timer)
+		  //This is the pulse/rainbow color method that is run on a Xojo timer.
+		  // I use the shared app properties here for a comparison to the pigpio timer method, but as you can see I can safely change the LEDColor property of the RGBLED.
+		  // The drawback is the doevents loop you have to install to keep the timer working in a console app.
+		  
+		  #pragma StackOverflowChecking false
+		  #pragma BackgroundTasks false
+		  // print "timer fired "+app.LEDBrightness.ToText
+		  app.LEDBrightness = app.LEDBrightness + app.LEDBrightnessStep
+		  // print "new value "+app.LEDBrightness.ToText
+		  if app.LEDBrightness > 0.9 or app.LEDBrightness < 0.03 then
+		    app.LEDBrightnessStep = app.LEDBrightnessStep * -1
+		    // print "revsersed order"
+		  end if
+		  app.LEDHue = app.LEDHue + 0.0001
+		  if app.LEDHue > 1 then app.LEDHue = 0
+		  RGBLed.LEDColor = HSV(app.LEDHue, 1.0, app.LEDBrightness)
+		  #Pragma unused t
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		 Shared Sub PulseLEDpgigioTimer()
+		  // this code will run on a background thread.
+		  // therefore, it is unsure to address objects and instance properties and methods.
+		  // we have to do the color calculation with shared propertes and hardcore the pigpio calls.
+		  #if TargetARM and TargetLinux
+		    
+		    #pragma StackOverflowChecking false
+		    #pragma BackgroundTasks false
+		    // print "timer fired "+app.LEDBrightness.ToText
+		    app.LEDBrightness = app.LEDBrightness + app.LEDBrightnessStep
+		    // print "new value "+app.LEDBrightness.ToText
+		    if app.LEDBrightness > 0.9 or app.LEDBrightness < 0.03 then
+		      app.LEDBrightnessStep = app.LEDBrightnessStep * -1
+		      // print "revsersed order"
+		    end if
+		    app.LEDHue = app.LEDHue + 0.0001
+		    if app.LEDHue > 1 then app.LEDHue = 0
+		    dim newcol as color = hsv(app.LEDHue, 1.0, app.LEDBrightness)
+		    
+		    // Calculate multiplier
+		    
+		    dim maxval as integer = 4080 * app.LEDBrightness
+		    dim maxRGB as Integer = max(newcol.Red, newcol.Blue, newcol.green)
+		    dim factor as Double = maxval / maxrgb
+		    // print "New brightness factor: "+factor.ToText
+		    
+		    //Set RGB values and remember Brightness value.
+		    dim RedValue as integer = newcol.red* factor
+		    // print "new red:"+RedValue.ToText
+		    dim GreenValue as integer =newcol.Green * factor
+		    dim BlueValue as integer = newcol.Blue * factor
+		    call pigpio.gpioPWM(12, RedValue)
+		    call pigpio.gpioPWM(16, GreenValue)
+		    call pigpio.gpioPWM(18, BlueValue)
+		  #endif
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+
+	#tag Property, Flags = &h0
+		Shared LEDBrightness As Double = .5
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		Shared LEDBrightnessStep As Double = 0.005
+	#tag EndProperty
+
+	#tag Property, Flags = &h0, Description = 4C4544487565
+		Shared LEDHue As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		Shared OrigBlue As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		Shared OrigGreen As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		Shared OrigRed As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		PulseTimer As Timer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		RGBLed As pigpio.RGBLED
+	#tag EndProperty
 
 	#tag Property, Flags = &h0
 		UltraSonic As pigpio.UltrasonicSensor

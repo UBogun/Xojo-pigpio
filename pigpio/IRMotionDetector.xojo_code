@@ -20,6 +20,9 @@ Protected Class IRMotionDetector
 		Protected Shared Sub MotionReceiver(GPIO As Integer, Level as Integer, Tick as Uint32)
 		  #pragma StackOverflowChecking false
 		  #pragma BackgroundTasks false
+		  
+		  // This is just an example. Overwrite this code or use your own subclass.
+		  
 		  #if TargetConsole then
 		    if level = 1 then
 		      print "Motion detected on pin "+gpio.ToText+" at tick "+tick.ToText
