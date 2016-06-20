@@ -1905,16 +1905,16 @@ Protected Module pigpio
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h1, Description = 53746172747320736572766F2070756C736573206F6E20746865204750494F2C20706F737369626C652076616C75657320617265203020286F6666292C2035303020286D6F737420616E74692D636C6F636B776973652920746F203235303020286D6F737420636C6F636B77697365292E20
-		Protected Sub ServoPulsewidth(User_GPIO As UInteger)
+		Protected Function ServoPulsewidth(User_GPIO As UInteger) As Integer
 		  #If TargetARM And TargetLinux Then
 		    dim result as integer = pigpio.gpioGetServoPulsewidth(User_GPIO)
-		    if result < 0 then MakeException (result)
+		    if result < 0 then MakeException (result) else return result
 		  #else
 		    PigpioErrorCheck
 		    #pragma unused user_gpio
 		  #endif
 		  
-		End Sub
+		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h1, Description = 53746172747320736572766F2070756C736573206F6E20746865204750494F2C20706F737369626C652076616C75657320617265203020286F6666292C2035303020286D6F737420616E74692D636C6F636B776973652920746F203235303020286D6F737420636C6F636B77697365292E20

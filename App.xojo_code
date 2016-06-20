@@ -25,6 +25,7 @@ Inherits ConsoleApplication
 		      print "4 – Ultrasonic Sensor"
 		      print "5 – RGB LED with Xojo timer pulse"
 		      print "6 – RGB LED with pigpio timer pulse"
+		      print "7 – Servo"
 		      print "q to quit"
 		      print"?"
 		      dim result as string = Input
@@ -142,6 +143,34 @@ Inherits ConsoleApplication
 		        app.OrigGreen = RGBLed.LEDColor.Green
 		        
 		        pigpio.TimerFunction (1, 10) = Addressof PulseLEDpgigioTimer
+		        
+		      case "7"
+		        print "Servo"
+		        print "this demo assumes you have a servo connected to pin 20"
+		        print "Ok to continue?"
+		        result = Input
+		        if result <> "y" then exit
+		        dim servo as new pigpio.Servo(20)
+		        pigpio.SleepSeconds 2
+		        print "Center "+servo.PulseWidth.ToText
+		        servo.left
+		        pigpio.SleepSeconds 2
+		        print "Left "+servo.PulseWidth.ToText
+		        servo.right
+		        pigpio.SleepSeconds 2
+		        print "Right "+servo.PulseWidth.ToText
+		        
+		        for q as double = 1 to 0 step -.1
+		          pigpio.SleepSeconds 0.3
+		          servo.Right(q)
+		        next
+		        for q as double = 0 to 1 step .1
+		          pigpio.SleepSeconds 0.3
+		          servo.left(q)
+		        next
+		        servo.Off
+		        
+		        
 		      case "testpin"
 		        print "enter pin to check in a tight loop"
 		        result = input
