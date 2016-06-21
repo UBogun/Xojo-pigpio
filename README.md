@@ -5,7 +5,7 @@ Sorry there is no documentation yet. Please see the demo console app and the met
 
 ###Currently included
 (Besides a lot of fairly untested pigpio declares):
-* almost every pigpio method and property, including exception messages for easier debugging. Basically only the scripts section and two or three bulk methods are missing where I am unsuere about the structure being used.
+* almost every pigpio method and property, including exception messages for easier debugging. Basically only the scripts section and two or three bulk methods are missing where I am unsure about the structure being used.
 * LCD Display class with rough Umlaut translation
 * Button class with interrupts enabling background responses
 * Interrupt-driven IRMotionDetector class
