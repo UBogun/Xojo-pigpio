@@ -46,6 +46,17 @@ Protected Class Servo
 	#tag EndMethod
 
 
+	#tag Note, Name = ReadMe
+		
+		This is a wrapper class for easier servo control.
+		It features no Unsupported code, so it should be safe to use in any case.
+		Basically,  you just define the gpio port the sensor is attached to and then use one of the instance methods to control it.
+		You might want to change LeftValue and RightValue accourding to the maximum pulse length of your sensor. Look into its data sheet.
+		
+		Left and right methods can be addressed with an optional double between 0.0 and 1.0 meaning the percentage of maximum deflection.
+	#tag EndNote
+
+
 	#tag Property, Flags = &h0, Description = 5468652070756C7365206C656E67746820666F722074686520736572766FE28099732063656E74657220706F736974696F6E2E
 		CenterValue As Integer = 1500
 	#tag EndProperty
@@ -88,6 +99,12 @@ Protected Class Servo
 
 	#tag ViewBehavior
 		#tag ViewProperty
+			Name="CenterValue"
+			Group="Behavior"
+			InitialValue="1500"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Index"
 			Visible=true
 			Group="ID"
@@ -102,10 +119,32 @@ Protected Class Servo
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="LeftValue"
+			Group="Behavior"
+			InitialValue="500"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
 			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="PulseWidth"
+			Group="Behavior"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="PWMPin"
+			Group="Behavior"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="RightValue"
+			Group="Behavior"
+			InitialValue="2500"
+			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"

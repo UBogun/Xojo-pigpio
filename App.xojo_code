@@ -15,8 +15,21 @@ Inherits ConsoleApplication
 		    print "Seconds/µseconds since 1970: "+secs.totext+":"+micros.totext
 		    pigpio.SecondsSinceInit(secs, micros) // and how long since init?
 		    print "Seconds/µseconds since initialization: "+ secs.totext+":"+micros.totext
+		    
+		    // Searching for OneWire devices
+		    print "Searching connected OneWire devices"
+		    pigpio.OneWireSensor.ListDevices()
 		    print ""
-		     
+		    OneWireTempSensor = pigpio.OneWireTemperatureSensor.AutoConnect
+		    if OneWireTempSensor <> nil then 
+		      print "Found tempsensor!"
+		      
+		      print OneWireTempSensor.PollData.ToText+" °C"
+		    else
+		      print "no Tempsensor found"
+		    end if
+		    
+		    
 		    do
 		      print "Select a demo"
 		      print "1 – Button with LED"
@@ -26,6 +39,7 @@ Inherits ConsoleApplication
 		      print "5 – RGB LED with Xojo timer pulse"
 		      print "6 – RGB LED with pigpio timer pulse"
 		      print "7 – Servo"
+		      if OneWireTempSensor <> nil then print "8 – Poll OneWire Temperature Sensor"
 		      print "q to quit"
 		      print"?"
 		      dim result as string = Input
@@ -170,6 +184,10 @@ Inherits ConsoleApplication
 		        next
 		        servo.Off
 		        
+		      case "8"
+		        if OneWireTempSensor <> nil then
+		          print OneWireTempSensor.PollData.ToText+" °C"
+		        end if
 		        
 		      case "testpin"
 		        print "enter pin to check in a tight loop"
@@ -277,6 +295,10 @@ Inherits ConsoleApplication
 
 	#tag Property, Flags = &h0, Description = 4C4544487565
 		Shared LEDHue As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		OneWireTempSensor As pigpio.OneWireTemperatureSensor
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
