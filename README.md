@@ -13,6 +13,7 @@ Sorry there is no documentation yet. Please see the demo console app and the met
 * RGBLED class that can be addressed with Xojo color and an additional brightness value and uses 12 bit color per channel internally.
 * Servo class using the pigpio servo methods and an optional Double parameter for fractions of the maximum left and right deflection.
 * Demo console app to make use of a few of these features, including pigpio timers and interrupts. It informs you about wiring when you select a demo.  
+* Not really a pigpio feature, but maybe useful: a OneWire Temperature sensor class for reading DB18B20 values.
   
 ### Basic use
 Copy the pigpio module and the bitwise extension from the project into your own Raspberry Pi project.  
