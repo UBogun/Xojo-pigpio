@@ -21,6 +21,13 @@ If you want to use it in a form closest to the original, you find the declare as
 Look into the classes in the module that demonstrate how to use the library.
 A gpioWrite for example is pigpio.DigitalValue(GPIOPin) = True or False, while you can get the value via pigpio.DigitalValue(gpioPin).  
 All public methods and properties are documented. Look into the description tags or consult the pigpio documentation at http://abyz.co.uk/rpi/pigpio/cif.html.
+  
+### Differences to pigpio original implementation
+Whereby pigpio returns you an integer for as good as method call, I have only done so if this return value needs to be remembered, like a handle. To prepare this library better for the new Xojo framework, I fire exceptions intead when the result is below 0, adding the exception message according to pigpio‘ error list.  
+Keep your method calls in try/catch causes therefore if you want to handle errors.  
+  
+As stated above, whereever a getter and a setter to a property exists, I have synthesized methods behaving like computed properties. You set the PWM dutycycle of a Pin by pigpio.AnalogValue(Pin) = value and get it by Dim value as Integer = pigpio.AnalogValue(Pin).  
+  
 
 ### No events!
 > Yes, it would be the highest Xojo level of comfort to have events firing when the level of a sensor changes. This is, if possible, complicated at least, because the events are returned on a background thread and it would be very difficult to get onto the virtual sensor instance.  
