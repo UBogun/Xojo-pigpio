@@ -11,6 +11,7 @@ Sorry there is no documentation yet. Please see the demo console app and the met
 * Interrupt-driven IRMotionDetector class
 * Ultrasonic sensor class
 * RGBLED class that can be addressed with Xojo color and an additional brightness value and uses 12 bit color per channel internally.
+* Servo class using the pigpio servo methods and an optional Double parameter for fractions of the maximum left and right deflection.
 * Demo console app to make use of a few of these features, including pigpio timers and interrupts. It informs you about wiring when you select a demo.  
   
 ### Basic use
@@ -28,7 +29,7 @@ All public methods and properties are documented. Look into the description tags
 If you need to use Xojo methods that lock to an object, it is safe to store the interrupt parameters into Xojo properties. Have a timer look for changes in these. See https://einhugur.com/blog/index.php/xojo-gpio/hc-sr501-sensor/ for an example of combined uses.  
 >  
 > Please note that the use of pigpio timers, interrupts and other callbacks is subject to discussion on the Xojo forums and not supported by Xojo officially. Therefore, it may stop working one day. In extensive tests and conversations with other developers, I have found the current solution to be stable as long as you do not access Xojo instances and instance properties and methods. Instead, you have to hardcode results and properties into shared or otherwise safe properties and use the shared pigpio external declares.   
-See https://forum.xojo.com/32985-pigpio-library-for-xojo  
+See https://forum.xojo.com/32985-pigpio-library-for-xojo (especially Joe’s post where he explains what is supposed to work in the current Xojo release, though not officially supported)
 
 ###Credits
 To Paul Lefebvre for Xojo-gpio and Björn Eiríksson for his brilliant Einhugur Tech blog.
