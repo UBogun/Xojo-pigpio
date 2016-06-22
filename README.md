@@ -23,7 +23,7 @@ A gpioWrite for example is pigpio.DigitalValue(GPIOPin) = True or False, while y
 All public methods and properties are documented. Look into the description tags or consult the pigpio documentation at http://abyz.co.uk/rpi/pigpio/cif.html.
   
 ### Differences to pigpio original implementation
-Whereby pigpio returns you an integer for as good as method call, I have only done so if this return value needs to be remembered, like a handle. To prepare this library better for the new Xojo framework, I fire exceptions intead when the result is below 0, adding the exception message according to pigpio‘ error list.  
+Whereby pigpio returns you an integer for as good as method call, I have only done so if this return value needs to be remembered, like a handle. To prepare this library better for the new Xojo framework, I fire exceptions when the result is below 0, adding the exception message according to pigpio‘s error list.  
 Keep your method calls in try/catch causes therefore if you want to handle errors.  
   
 As stated above, whereever a getter and a setter to a property exists, I have synthesized methods behaving like computed properties. You set the PWM dutycycle of a Pin by pigpio.AnalogValue(Pin) = value and get it by Dim value as Integer = pigpio.AnalogValue(Pin).  
