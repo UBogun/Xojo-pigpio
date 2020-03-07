@@ -1032,7 +1032,7 @@ Protected Module pigpio
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Attributes( hidden ) Protected Soft Declare Function i2cReadDevice Lib pigpioLibName (i2chandle as uinteger, byref value as ptr, count as uinteger) As Integer
+		Attributes( hidden ) Protected Soft Declare Function i2cReadDevice Lib pigpioLibName (i2chandle as uinteger, value as ptr, count as uinteger) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
